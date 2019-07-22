@@ -11,3 +11,9 @@
 ### Viikkoraportit
 
 [Viikko 1](https://github.com/Pate1337/PaavonTiedostoPakkaaja/blob/master/viikkoraportit/viikko1.md)
+
+### Hyödyllisiä linkkejä
+
+[Wikipedia - Tiedonpakkaus](https://fi.wikipedia.org/wiki/Tiedonpakkaus)
+
+[Techie Delight - Huffman coding compression algorithm](https://www.techiedelight.com/huffman-coding/)
