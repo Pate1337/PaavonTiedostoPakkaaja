@@ -1,9 +1,9 @@
 # PaavonTiedostoPakkaaja
 
-[Määrittelydokumentti]()
+[Määrittelydokumentti](https://github.com/Pate1337/PaavonTiedostoPakkaaja/blob/master/documentation/maarittelydokumentti.md)
 
-[Toteutusdokumentti]()
+[Toteutusdokumentti](https://github.com/Pate1337/PaavonTiedostoPakkaaja/blob/master/documentation/toteutusdokumentti.md)
 
-[Testausdokumentti]()
+[Testausdokumentti](https://github.com/Pate1337/PaavonTiedostoPakkaaja/blob/master/documentation/testausdokumentti.md)
 
-[Käyttöohje]()
+[Käyttöohje](https://github.com/Pate1337/PaavonTiedostoPakkaaja/blob/master/documentation/kayttoohje.md)
