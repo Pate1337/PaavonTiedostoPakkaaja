@@ -25,6 +25,11 @@
 * Miten saada tekstiedosto pakattua alkuperäistä tiedostoa 30-40% pienempään tilaan ja palautettua täysin ennalleen?
 * Käytetään Huffmanin koodausta. Syy seuraavassa 'Ongelman ratkaisu'.
 
+### Ohjelman syötteet
+
+* Tekstitiedosto, jossa suuri määrä tekstiä.
+  * Huffmanin koodaus saavuttaa parhaan suorituskykynsä suurilla syötteillä.
+
 ### Ongelman ratkaisu
 
 * Luo solmut jokaisesta merkistä.
