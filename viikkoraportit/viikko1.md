@@ -1,9 +1,3 @@
-Mitä olen tehnyt tällä viikolla?
-Miten ohjelma on edistynyt?
-Mitä opin tällä viikolla / tänään?
-Mikä jäi epäselväksi tai tuottanut vaikeuksia? Vastaa tähän kohtaan rehellisesti, koska saat tarvittaessa apua tämän kohdan perusteella.
-Mitä teen seuraavaksi?
-
 * Perehtymistä Huffmanin koodaukseen sekä diskreettiin kosinimuunnokseen.
 * Havaitsin, että niin mielenkiintoinen aihe, kuin kuvatiedoston pakkaaminen olisikin, ei aikani todennäköisesti riitä sille.
   * Epäselväksi jäi, miten kuvan pikselit saadaan arvoiksi Javalla, kuten diskreetti kosinimuunnos edellyttää. Lukemiseni perusteella pikselin arvo ilmaistaan 
