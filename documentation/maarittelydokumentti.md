@@ -22,7 +22,7 @@
 
 ### Ongelma
 
-* Miten saada tekstiedosto pakattua alkuperäistä tiedostoa 30-40% pienempään tilaan ja palautettua täysin ennalleen?
+* Miten saada tekstiedosto pakattua alkuperäistä tiedostoa 40-60% pienempään tilaan ja palautettua täysin ennalleen?
 * Käytetään Huffmanin koodausta. Syy seuraavassa 'Ongelman ratkaisu'.
 
 ### Ohjelman syötteet
