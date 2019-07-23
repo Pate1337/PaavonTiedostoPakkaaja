@@ -50,3 +50,16 @@
 
 * Huffmanin koodaus on häviötön pakkausalgoritmi (lossless), joten pakattu tiedosto saadaan palautettua täysin samanlaiseksi, kuin alkuperäinen tiedosto. Tämän takia se soveltuu juuri tekstin pakkaamiseen. 
   * Kuvien pakkaamiseen käytetään usein häviöllisiä pakkausalgoritmeja.
+
+### Tavoitteelliset aika- ja tilavaativuudet
+
+* Prioriteettijonoon asettaminen tapahtuu aikavaativuudella O(log(n)), jossa n on alkioiden lukumäärä.
+* Binäärihakupuun läpikäyminen tapahtuu aikavaativuudella O(n).
+* Näin ollen koko algoritmin aikavaativuus tulisi olla O(nlog(n)).
+* Binäärihakupuun läpikäymisen tilavaativuus on O(n).
+
+### Lähteet
+
+* [Techie Delight - Huffman coding compression algorithm](https://www.techiedelight.com/huffman-coding/)
+
+* Jyrki Kivinen, Tietorakenteet ja algoritmit kurssimateriaali.
