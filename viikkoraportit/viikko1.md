@@ -14,4 +14,6 @@
   
 * Seuraavaksi alan kirjoittaa Huffmanin algoritmia käyttäen Javan valmiita tietokanteita.
 
-* Tunnit: 6
+* Bittien kirjoittamista reenattu Javalla. Löytö: https://stackoverflow.com/questions/33086677/writing-binary-value-to-file-for-huffman-encoding
+
+* Tunnit: 6 + 3 = 9
