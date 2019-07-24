@@ -16,4 +16,5 @@
 
 * Bittien kirjoittamista reenattu Javalla. Löytö: https://stackoverflow.com/questions/33086677/writing-binary-value-to-file-for-huffman-encoding
 
+* Ehkä hyödyllinen https://www.codejava.net/java-se/file-io/how-to-read-and-write-binary-files-in-java
 * Tunnit: 6 + 3 = 9
