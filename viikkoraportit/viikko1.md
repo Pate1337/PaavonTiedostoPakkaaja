@@ -14,4 +14,10 @@
   
 * Seuraavaksi alan kirjoittaa Huffmanin algoritmia käyttäen Javan valmiita tietokanteita.
 
-* Tunnit: 6
+* Bittien kirjoittamista reenattu Javalla. Löytö: https://stackoverflow.com/questions/33086677/writing-binary-value-to-file-for-huffman-encoding
+
+* Ehkä hyödyllinen https://www.codejava.net/java-se/file-io/how-to-read-and-write-binary-files-in-java
+
+* Myös tässä hyödyllinen ehkä BitSetin tilalle: https://stackoverflow.com/questions/4220917/is-it-possible-to-read-write-bits-from-a-file-using-java
+
+* Tunnit: 6 + 3 = 9
