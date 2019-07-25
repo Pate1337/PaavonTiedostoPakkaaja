@@ -20,4 +20,8 @@
 
 * Myös tässä hyödyllinen ehkä BitSetin tilalle: https://stackoverflow.com/questions/4220917/is-it-possible-to-read-write-bits-from-a-file-using-java
 
-* Tunnit: 6 + 3 = 9
+* Bittien kanssa säätöä. Bitwise operandien käytön harjoittelua, sain int muuttujien arvoa muutettua manipuloimalla yksittäisiä bittejä. Tämä tulee olemaan tärkeää kun "00100111" jne Stringistä luodaan binääritiedosto. 
+* Aikaisemmin hämmästyttänyt ongelma on siis selvinnyt. Data pitää kuin pitääkin tallentaa binääritiedostoon luomalla itse tavut (Pienin datan tallennusmuoto).
+* Tiedostoon en ole vielä dataa saanut, saatika sieltä sitä luettua.
+  * Se luulisi olevan melko yksinkertaista OutputStreamien avulla.
+* Tunnit: 6 + 3 + 2 = 11
