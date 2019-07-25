@@ -24,4 +24,5 @@
 * Aikaisemmin hämmästyttänyt ongelma on siis selvinnyt. Data pitää kuin pitääkin tallentaa binääritiedostoon luomalla itse tavut (Pienin datan tallennusmuoto).
 * Tiedostoon en ole vielä dataa saanut, saatika sieltä sitä luettua.
   * Se luulisi olevan melko yksinkertaista OutputStreamien avulla.
+* Hyvä sivu bittimuunnoksista http://sys.cs.rice.edu/course/comp314/10/p2/javabits.html
 * Tunnit: 6 + 3 + 2 = 11
