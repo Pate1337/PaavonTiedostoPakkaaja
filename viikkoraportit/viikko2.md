@@ -1,0 +1,12 @@
+* String tyyppisen bittijonon muuntaminen tavuiksi ja tallentaminen ja lukeminen tiedostoon.
+* BitSetistä luovuttu.
+  * Helpompi manipuloida bittejä itse ja luoda sellainen tavutaulukko (byte-array), kuin tähän tehtävään soveltuu.
+* Ongelmia jotka selätetty:
+  * Javan tyypit (int, byte, long jne.) varaavat aina ensimmäisen bitin etumerkin ilmaisemiseen. 
+    * Esimerkiksi byteen (8 bittiä) voi tallentaa kokonaisluvut, jotka ovat välillä -127 ja 127 (2^7). Ei kokonaislukua 255 (2^8).
+    * Tämä saatiin voitettua manipuloimalla bittejä bitwise operaatioilla.
+    * Esimerkiksi Byte.parseByte() antaa error jos parametrina annettu string '10000000'
+  * Ongelmaa aiheutti myös se, että tavu, jonka lopussa oli nollia, tallentui liian pieneksi arvoksi. Esim. "11000000" tallennettiin tavuna "00000011".
+  * Tavut joiden arvo oli 0 (00000000) piti myös saada tallennettua tiedostoon. Oli ongelma myös jossain vaiheessa.
+
+* Tunnit: 6
