@@ -1,15 +1,8 @@
 import java.io.File;
-import java.util.BitSet;
-import java.io.ObjectOutputStream;
 import java.io.FileOutputStream;
-import java.io.BufferedOutputStream;
-import java.io.OutputStream;
-import java.io.InputStream;
 import java.io.FileInputStream;
-import java.io.BufferedInputStream;
 import java.io.DataOutputStream;
 import java.io.DataInputStream;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 class Main {
@@ -74,7 +67,7 @@ class Main {
       System.out.println("Error reading file");
     }
 
-    // Tulosta tiedostosta luet tavut.
+    // Tulosta tiedostosta luetut tavut.
     System.out.println("Tavut luettuna tiedostosta:");
     for (int i = 0; i < bytesFromFile.size(); i++) {
       System.out.print(Integer.toBinaryString((bytesFromFile.get(i) & 0xFF) + 0x100).substring(1));
