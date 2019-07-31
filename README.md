@@ -32,6 +32,7 @@ generoi hakemistoon target suoritettavan jar-tiedoston Tiedostopakkaaja-1.0-SNAP
 ```
 java -jar target/Tiedostopakkaaja-1.0-SNAPSHOT.jar 
 ```
+Ohjelman suorittaminen luo juurihakemistoon tiedoston result.bin.
 
 
 
