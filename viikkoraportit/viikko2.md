@@ -9,4 +9,6 @@
   * Ongelmaa aiheutti myös se, että tavu, jonka lopussa oli nollia, tallentui liian pieneksi arvoksi. Esim. "11000000" tallennettiin tavuna "00000011".
   * Tavut joiden arvo oli 0 (00000000) piti myös saada tallennettua tiedostoon. Oli ongelma myös jossain vaiheessa.
 
-* Tunnit: 6
+* Maven projekti luotu.
+
+* Tunnit: 6 + 2 = 8
