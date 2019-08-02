@@ -18,6 +18,7 @@
     * Käyttöliittymä voisi kysyä käyttäjältä ensin tiedoston polkua, jonka jälkeen kysytään halutaanko tiedosto pakata vai purkaa.
     * Seuraavaksi kysytään polkua, johon purettu/pakattu tiedosto halutaan tallentaa.
     * Tämän jälkeen ohjelma suorittaa annetun toimenpiteen ja tallentaa puretun/pakatun tiedoston annettuun polkuun.
+    * [Tässä](https://docs.oracle.com/javase/tutorial/essential/io/pathOps.html) on ihan hyvää settiä poluista.
   * Huffmanin algoritmin toteuttaminen Javan tietorakenteita käyttäen.
   * Dokumentaatio on myös niin surullisella mallilla, että sitä pitää parantaa huomattavasti.
 
