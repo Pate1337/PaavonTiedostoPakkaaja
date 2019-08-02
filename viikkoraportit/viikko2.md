@@ -14,6 +14,10 @@
 * Seuraavaksi:
   * Alan jäsentelemään koodia eri luokkiin ja metodeihin ja luon javadocin.
   * Koodin testaus.
+  * Pitää pohtia, millaisen ohjelman luon.
+    * Käyttöliittymä voisi kysyä käyttäjältä ensin tiedoston polkua, jonka jälkeen kysytään halutaanko tiedosto pakata vai purkaa.
+    * Seuraavaksi kysytään polkua, johon purettu/pakattu tiedosto halutaan tallentaa.
+    * Tämän jälkeen ohjelma suorittaa annetun toimenpiteen ja tallentaa puretun/pakatun tiedoston annettuun polkuun.
   * Huffmanin algoritmin toteuttaminen Javan tietorakenteita käyttäen.
 
 * Tunnit: 6 + 2 + 1 = 9
