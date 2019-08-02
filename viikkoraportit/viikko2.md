@@ -19,5 +19,6 @@
     * Seuraavaksi kysytään polkua, johon purettu/pakattu tiedosto halutaan tallentaa.
     * Tämän jälkeen ohjelma suorittaa annetun toimenpiteen ja tallentaa puretun/pakatun tiedoston annettuun polkuun.
   * Huffmanin algoritmin toteuttaminen Javan tietorakenteita käyttäen.
+  * Dokumentaatio on myös niin surullisella mallilla, että sitä pitää parantaa huomattavasti.
 
 * Tunnit: 6 + 2 + 1 = 9
