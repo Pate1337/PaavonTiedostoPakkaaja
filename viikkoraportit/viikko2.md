@@ -11,4 +11,9 @@
 
 * Maven projekti luotu.
 
-* Tunnit: 6 + 2 = 8
+* Seuraavaksi:
+  * Alan jäsentelemään koodia eri luokkiin ja metodeihin ja luon javadocin.
+  * Koodin testaus.
+  * Huffmanin algoritmin toteuttaminen Javan tietorakenteita käyttäen.
+
+* Tunnit: 6 + 2 + 1 = 9
