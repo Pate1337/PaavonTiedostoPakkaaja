@@ -15,5 +15,7 @@
 
 * Seuraavaksi alan kirjoittamaan testejä ja javadoccia.
 * Sen jälkeen toteutan kunnollisen käyttöliittymän.
+
+* Javadoccia jo aloiteltu.
     
-* Tunnit: 6 + 4 = 10
+* Tunnit: 6 + 4 + 2 = 12

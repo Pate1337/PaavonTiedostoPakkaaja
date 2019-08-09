@@ -38,5 +38,14 @@ java -jar target/Tiedostopakkaaja-1.0-SNAPSHOT.jar
 ```
 Ohjelman suorittaminen luo juurihakemistoon tiedoston result.bin.
 
+### JavaDocin luominen
+
+JavaDoc generoidaan hakemistossa /TiedostoPakkaaja komennolla
+```
+mvn javadoc:javadoc
+```
+
+Javadocia voi tarkastella selaimella osoitteessa /target/site/apidocs.
+
 
 

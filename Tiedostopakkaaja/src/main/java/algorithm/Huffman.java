@@ -5,9 +5,17 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
+/** Contains all the functionality for encoding and decoding text using Huffman coding
+ */
 public class Huffman {
-  // traverse the Huffman Tree and store Huffman Codes
-	// in a map.
+  /** Creates a HashMap containing the characters and their Huffman codes. Goes through
+	* the tree starting from the left most leaf node.
+	* @param root A Node of the Huffman tree
+	* @param str A String containing the root node's Huffman code
+	* @param huffmanCode A Map that contains all the Huffman codes for
+	* already handled leaf nodes
+	* @see Node
+	*/
 	public static void encode(Node root, String str, Map<Character, String> huffmanCode) {
 		if (root == null)
 			return;
@@ -17,12 +25,17 @@ public class Huffman {
 			huffmanCode.put(root.character, str);
 		}
 
-
 		encode(root.left, str + "0", huffmanCode);
 		encode(root.right, str + "1", huffmanCode);
 	}
 
-	// traverse the Huffman Tree and decode the encoded string
+	/** Creates a StringBuilder containing the decoded text
+	* @param root A Node of the Huffman tree
+	* @param index An integer that keeps track of the current index of the bit in the string
+	* @param string A String containing the bits
+	* @param sb A StringBuilder that adds all the leaf node characters into a string
+	* @return An integer that points the index of the next bit to handle
+	*/
 	public static int decode(Node root, int index, String string, StringBuilder sb) {
 		if (root == null)
 			return index;
