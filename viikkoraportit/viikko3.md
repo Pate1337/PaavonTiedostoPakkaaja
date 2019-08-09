@@ -8,7 +8,12 @@
 * Sovellus toimii nyt siten, että se pakkaa annetun merkkijonon binääritiedostoon ja välittömästi lukee ja purkaa binääritiedoston takaisin alkuperäiseksi merkkijonoksi.
 
 * Ongelmia:
-  * Tällä hetkellä decoodaaminen ei vielä toimi kunnolla. Merkkijonot joissa viimeinen merkki esiintyy useamman kerran peräkkäin, jättää viimeisen merkin läpikäymättä.
+  * (KORJATTU) Tällä hetkellä decoodaaminen ei vielä toimi kunnolla. Merkkijonot joissa viimeinen merkki esiintyy useamman kerran peräkkäin, jättää viimeisen merkin läpikäymättä.
     * Esim. merkkijono "aaabbbaaa" palautuu binääritiedostosta merkkijonona "aaabbbaa" (viimeinen merkki puuttuu). Tämä johtuu decoodaamisvaiheesta.
   * Miten saan tallennettua tiedostoon HashMapin, joka ilmaisee jokaista merkkiä vastaavan esiintymistiheyden? Pitääkö tämäkin tallentaa bitteinä samaan tiedostoon?
     * Se on välttämätön binääritiedoston dekoodaamisen kannalta.
+
+* Seuraavaksi alan kirjoittamaan testejä ja javadoccia.
+* Sen jälkeen toteutan kunnollisen käyttöliittymän.
+    
+* Tunnit: 6 + 4 = 10
