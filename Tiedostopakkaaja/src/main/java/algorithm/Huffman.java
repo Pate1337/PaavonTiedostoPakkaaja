@@ -29,7 +29,6 @@ public class Huffman {
 
 		// found a leaf node
 		if (root.left == null && root.right == null) {
-			// System.out.print(root.character);
       sb.append(root.character);
 			return index;
 		}
@@ -85,14 +84,25 @@ public class Huffman {
     // decoding the binary file.
     createFrequenciesHashMap(text, freq);
 
+    // Erikoistapaukset
+    if (freq.size() == 1) {
+      String toReturn = "";
+      for (int i = 0; i < text.length(); i++) {
+        toReturn += "0";
+      }
+      return toReturn;
+    } else if (freq.size() == 0) {
+      // Tämä voidaan katsoa jo mainissa. Tarvi mitään tiedostoa edes tallentaa tällöin.
+      System.out.println("Original text is empty!");
+    }
+
     // Build the Huffman tree
     buildHuffmanTree(pq, freq);
 
     Node root = pq.peek();
+
     // encode the given parameter String text
     encode(root, "", huffmanCode);
-
-    System.out.println("\nOriginal string was :\n" + text);
 
 		// print encoded string
 		StringBuilder sb = new StringBuilder();
@@ -100,18 +110,21 @@ public class Huffman {
 			sb.append(huffmanCode.get(text.charAt(i)));
 		}
 
-    /*
-    // print the Huffman codes
-		System.out.println("Huffman Codes are :\n");
-		for (Map.Entry<Character, String> entry : huffmanCode.entrySet()) {
-			System.out.println(entry.getKey() + " " + entry.getValue());
-		}
-    */
-
     // return the encoded String
     return sb.toString();
   }
   public static String decodeBitStringToText (String bitString, Map<Character, Integer> freq) {
+
+		// Erikoistapaus: 
+		if (freq.size() == 1) {
+			String toReturn = "";
+			for (Map.Entry<Character, Integer> entry : freq.entrySet()) {
+				for (int i = 0; i < entry.getValue(); i++) {
+					toReturn += entry.getKey();
+				}
+			}
+			return toReturn;
+		}
     
     // Tarvitsee parametrinaan HashMapin, joka sisältää merkit ja esiintymistiheydet
     PriorityQueue<Node> pq = new PriorityQueue<>((l, r) -> l.frequency - r.frequency);
@@ -124,7 +137,7 @@ public class Huffman {
 
     // decode the encoded string
 		int index = -1;
-		while (index < bitString.length() - 2) {
+		while (index < bitString.length() - 1) {
 			index = decode(root, index, bitString, sb);
 		}
     return sb.toString();

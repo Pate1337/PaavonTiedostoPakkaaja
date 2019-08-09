@@ -54,7 +54,7 @@ public class NotWellImplementedYet {
     // Tiedoston koko
     File f = new File("result.bin");
     if (f.exists() && f.isFile()) {
-    System.out.println("Tiedoston result.bin koko tavuina: " + f.length());
+      System.out.println("Tiedoston result.bin koko tavuina: " + f.length());
     }
 
     // Lue tavut tiedostosta. Käytä ArrayList. Tiedoston koko tavuissa metodilla
