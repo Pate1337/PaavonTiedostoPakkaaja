@@ -34,8 +34,8 @@ public class HuffmanTest {
     characterStrings[3] = "aaaaaaaaaaaaaaabbbbbbbccccccddddddeeeee";
 
     bitStrings = new String[testCasesLength];
-    bitStrings[0] = "0000000000000000000000000001000000000000011000010";
-    bitStrings[1] = "000000000000000000000000000100000000000001100010000";
+    bitStrings[0] = "000000000000000000000000011000010";
+    bitStrings[1] = "00000000000000000000000001100010000";
     bitStrings[2] = "0000000000000101" + "0000000000110000" + "10100"
       + "0000000001100011" + "0000000001100100" + "0000000001100001"
       + "010100011";
@@ -76,9 +76,9 @@ public class HuffmanTest {
   @Test
   public void oneCharacterCasesAreHandledCorrectlyOnEncoding() {
 
-    assertEquals("0000000000000000000000000001000000000000011000010", Huffman.handleOneCharacterCaseOnEncode(characterStrings[0], 'a'));
+    assertEquals("000000000000000000000000011000010", Huffman.handleOneCharacterCaseOnEncode(characterStrings[0], 'a'));
 
-    assertEquals("000000000000000000000000000100000000000001100010000", Huffman.handleOneCharacterCaseOnEncode(characterStrings[1], 'b'));
+    assertEquals("00000000000000000000000001100010000", Huffman.handleOneCharacterCaseOnEncode(characterStrings[1], 'b'));
   }
 
   @Test

@@ -86,8 +86,6 @@ public class Huffman {
 			Node right = pq.poll();
 			Node left = pq.poll();
 
-			// System.out.println("Smallest frequencies: " + left.character + ": " + left.frequency + ", " + right.character + ": " + right.frequency);
-
 			// Create a new internal node with these two nodes as children 
 			// and with frequency equal to the sum of the two nodes
 			// frequencies. Add the new node to the priority queue.
@@ -139,7 +137,9 @@ public class Huffman {
 		toReturn += "0000000000000000";
 		// Seuraavat 16 bittiä ilmaisevat merkeistä muodostetun bittijonon pituuden biteissä
 		// Tässä tapauksessa 16 bittiä, eli "0000000000010000"
-		toReturn += "0000000000010000";
+		
+		// toReturn += "0000000000010000";
+		
 		// Seuraavat bitit olisivat puu, jota ei ole, joten bittejäkään ei ole.
 		// Seuraavat bitit ilmaisevat ainoan merkin bittijonoesityksen.
 		toReturn += fillBeginningWithZeroes(Integer.toBinaryString(onlyCharacter));
@@ -150,14 +150,14 @@ public class Huffman {
 		return toReturn;
 	}
 
-	private static String handleOneCharacterCaseOnDecode(String bitString, char onlyCharacter) {
-		// Seuraavat 2 tavua vastaavat integer arvoa 16.
-		// Sitä seuraavat 16 bittiä kuvaavat tiedoston ainoaa merkkiä.
+	private static String handleOneCharacterCaseOnDecode(String bitString) {
+		// Seuraavat 16 bittiä kuvaavat tiedoston ainoaa merkkiä.
 		// Loput bitit ovat merkkien määrän verran 0 bittejä.
-		String endBits = bitString.substring(48);
+		char onlyChar = (char)Integer.parseInt(bitString.substring(16, 32), 2);
+		String endBits = bitString.substring(32);
 		String toReturn = "";
 		for (int i = 0; i < endBits.length(); i++) {
-			toReturn += onlyCharacter;
+			toReturn += onlyChar;
 		}
 		return toReturn;
 	}
@@ -228,8 +228,7 @@ public class Huffman {
 
 		// Erikoistapaus. Tällöin alkuperäinen tiedosto sisältää vain yhtä merkkiä, esim. "aaaaa"
 		if (treeLength == 0) {
-			char onlyChar = (char)Integer.parseInt(bitString.substring(32, 48), 2);
-			return handleOneCharacterCaseOnDecode(bitString, onlyChar);
+			return handleOneCharacterCaseOnDecode(bitString);
 		} 
 
 		// Seuraavat 2 tavua ovat merkkijono bittijonon pituus
