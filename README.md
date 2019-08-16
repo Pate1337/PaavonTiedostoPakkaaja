@@ -16,6 +16,8 @@
 
 [Viikko 3](https://github.com/Pate1337/PaavonTiedostoPakkaaja/blob/master/viikkoraportit/viikko3.md)
 
+[Viikko 4](https://github.com/Pate1337/PaavonTiedostoPakkaaja/blob/master/viikkoraportit/viikko4.md)
+
 ## Hyödyllisiä linkkejä
 
 [Wikipedia - Tiedonpakkaus](https://fi.wikipedia.org/wiki/Tiedonpakkaus)
@@ -36,7 +38,6 @@ generoi hakemistoon target suoritettavan jar-tiedoston Tiedostopakkaaja-1.0-SNAP
 ```
 java -jar target/Tiedostopakkaaja-1.0-SNAPSHOT.jar 
 ```
-Ohjelman suorittaminen luo juurihakemistoon tiedoston result.bin.
 
 ### JavaDocin luominen
 
