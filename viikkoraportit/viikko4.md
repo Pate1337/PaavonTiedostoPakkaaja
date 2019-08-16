@@ -17,5 +17,6 @@
   * Tuloksena syntyy uusi tiedosto samaan polkuun, joka on alkuperäisen tiedoston nimestä riippuen (.txt => .bin TAI .bin => .txt).
 
 * Testailua aloiteltu.
+* Dokumentaatiota paranneltu. Toteutusdokumentti ja käyttöohje luotu.
 
-* Tunnit: 6 + 7 + 6 = 19
+* Tunnit: 6 + 7 + 6 + 2 = 21
