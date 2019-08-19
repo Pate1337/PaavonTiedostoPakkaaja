@@ -1,10 +1,12 @@
 package algorithm;
 
 import algorithm.Huffman;
+import algorithm.BitStringTree;
 import algorithm.Node;
 
 import org.junit.*;
 import static org.junit.Assert.*;
+import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
@@ -20,12 +22,6 @@ public class HuffmanTest {
     // Kaikki arvot mitä täällä asetetaan, on testitapauksia.
     // Ole varovainen kun muutat näitä arvoja.
 
-    // Bittijonon ensimmäiset 2 tavua ilmaisevat puu bittijonon pituuden biteissä.
-		// Bittijonon seuraavat 2 tavua ilmaisevat merkeistä muodostetun bittijonon pituuden biteissä.
-		// Seuraavat bitit ilmaisevat puun.
-		// Seuraavat bitit ilmaisevat merkit.
-		// Loput bitit ilmaisevat Huffman koodeilla luodun bittijonon.
-
     int testCasesLength = 4;
     characterStrings = new String[testCasesLength];
     characterStrings[0] = "a";
@@ -39,6 +35,10 @@ public class HuffmanTest {
     bitStrings[2] = "0000000000000101" + "0000000000110000" + "10100"
       + "0000000001100011" + "0000000001100100" + "0000000001100001"
       + "010100011";
+    bitStrings[3] = "0000000000001001" + "0000000001010000" + "111001000"
+      + "0000000001100010" + "0000000001100011" + "0000000001100100"
+      + "0000000001100101" + "0000000001100001"
+      + "111111111111111000000000000000000000001001001001001001010010010010010010011011011011011";
 
     frequencies = new ArrayList<>();
 
@@ -116,6 +116,34 @@ public class HuffmanTest {
     assertEquals(null, root1.right.right);
   }
 
+  @Test
+  public void createsCorrectHuffmanCodesAndBuildsBitStringTree() {
+    BitStringTree tree = new BitStringTree();
+    Node root = Huffman.buildHuffmanTree(frequencies.get(3));
+    HashMap<Character, String> expected = new HashMap<>();
+    expected.put('a', "1");
+    expected.put('b', "000");
+    expected.put('c', "001");
+    expected.put('d', "010");
+    expected.put('e', "011");
+    Map<Character, String> huffmanCode = Huffman.createHuffmanCodes(root, tree);
+
+    assertTrue(huffmanCode.equals(expected));
+    assertEquals("111001000", tree.tree.toString());
+    assertEquals("bcdea", tree.characters.toString());
+  }
+
+  @Test
+  public void createsBitStringOfCharactersInTheGivenParameter() {
+    // Each is 16 bits
+    String param = "abc123!?€";
+    String expected = "0000000001100001" + "0000000001100010" + "0000000001100011"
+      + "0000000000110001" + "0000000000110010" + "0000000000110011"
+      + "0000000000100001" + "0000000000111111" + "0010000010101100";
+    String result = Huffman.createBitStringOfCharacters(param);
+    assertEquals(expected, result);
+  }
+
 
   @Test
   public void encodesTheGivenStringCorrectly() {
@@ -128,8 +156,8 @@ public class HuffmanTest {
 
     assertEquals(bitStrings[1], result2);
 
-    /*String result3 = Huffman.encodeTextToBitString(characterStrings[2]);
+    String result4 = Huffman.encodeTextToBitString(characterStrings[3]);
 
-    assertEquals(bitStrings[2], result3);*/
+    assertEquals(bitStrings[3], result4);
   }
 }

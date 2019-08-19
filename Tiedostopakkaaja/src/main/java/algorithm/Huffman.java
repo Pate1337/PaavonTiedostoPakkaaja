@@ -1,6 +1,7 @@
 package algorithm;
 
 import algorithm.Node;
+import algorithm.BitStringTree;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.PriorityQueue;
@@ -25,21 +26,21 @@ public class Huffman {
 	* already handled leaf nodes
 	* @see Node
 	*/
-	public static void encode(Node root, String str, Map<Character, String> huffmanCode, StringBuilder tree, StringBuilder characters) {
+	public static void encode(Node root, String str, Map<Character, String> huffmanCode, BitStringTree tree) {
 		if (root == null)
 			return;
 
 		// found a leaf node
 		if (root.left == null && root.right == null) {
-			tree.append("0");
-			characters.append(root.character);
+			tree.tree.append("0");
+			tree.characters.append(root.character);
 			huffmanCode.put(root.character, str);
 		} else {
-			tree.append("1");
+			tree.tree.append("1");
 		}
 
-		encode(root.left, str + "0", huffmanCode, tree, characters);
-		encode(root.right, str + "1", huffmanCode, tree, characters);
+		encode(root.left, str + "0", huffmanCode, tree);
+		encode(root.right, str + "1", huffmanCode, tree);
 	}
 
 	/** Creates a StringBuilder containing the decoded text
@@ -69,7 +70,6 @@ public class Huffman {
 		return index;
 	}
 
-	// Builds Huffman Tree and huffmanCode and decode given input text
 	// Rakentaa Huffman puun ja palauttaa juurisolmun.
 	public static Node buildHuffmanTree(Map<Character, Integer> freq) {
 		PriorityQueue<Node> pq = new PriorityQueue<>((l, r) -> l.frequency - r.frequency);
@@ -135,12 +135,7 @@ public class Huffman {
 		String toReturn = "";
 		// Ensimmäiset 16 bittiä 0, ilmaisevat puun pituuden
 		toReturn += "0000000000000000";
-		// Seuraavat 16 bittiä ilmaisevat merkeistä muodostetun bittijonon pituuden biteissä
-		// Tässä tapauksessa 16 bittiä, eli "0000000000010000"
 		
-		// toReturn += "0000000000010000";
-		
-		// Seuraavat bitit olisivat puu, jota ei ole, joten bittejäkään ei ole.
 		// Seuraavat bitit ilmaisevat ainoan merkin bittijonoesityksen.
 		toReturn += fillBeginningWithZeroes(Integer.toBinaryString(onlyCharacter));
 		// Loput merkit ovat merkkien määrän verran 0 bittejä
@@ -162,6 +157,25 @@ public class Huffman {
 		return toReturn;
 	}
 
+	public static Map<Character, String> createHuffmanCodes(Node root, BitStringTree tree) {
+		// Luo Huffman koodit jokaiselle merkille.
+		// Luo samalla bittijono tree, jossa 0 kuvaa lehtisolmua ja 1 sisäsolmua.
+		// Luo samalla characters StringBuilder, johon tallennetaan lehtisolmuja vastaavat merkit.
+		Map<Character, String> huffmanCode = new HashMap<>();
+    encode(root, "", huffmanCode, tree);
+
+		return huffmanCode;
+	}
+
+	public static String createBitStringOfCharacters (String text) {
+		StringBuilder charsInBits = new StringBuilder();
+		for (int i = 0; i < text.length(); i++) {
+			String charInBits = fillBeginningWithZeroes(Integer.toBinaryString(text.charAt(i)));
+			charsInBits.append(charInBits);
+		}
+		return charsInBits.toString();
+	}
+
   public static String encodeTextToBitString (String text) {
 
 		// Luo HashMap freq, joka sisältää merkit ja niiden esiintymistiheydet.
@@ -177,41 +191,30 @@ public class Huffman {
     // Luo Huffman puu
 		Node root = buildHuffmanTree(freq);
 
-    // Luo Huffman koodit jokaiselle merkille.
-		// Luo samalla bittijono tree, jossa 0 kuvaa lehtisolmua ja 1 sisäsolmua.
-		// Luo samalla characters StringBuilder, johon tallennetaan lehtisolmuja vastaavat merkit.
-		StringBuilder tree = new StringBuilder();
-		StringBuilder characters = new StringBuilder();
-		Map<Character, String> huffmanCode = new HashMap<>();
-    encode(root, "", huffmanCode, tree, characters);
+		// Luo Huffman koodit jokaiselle merkille
+		BitStringTree bitStringTree = new BitStringTree();
+		Map<Character, String> huffmanCode = createHuffmanCodes(root, bitStringTree);
+		StringBuilder characters = bitStringTree.characters;
+		StringBuilder tree = bitStringTree.tree;
 
 		// Käy läpi lehtisolmujen merkit ja luo jokaisesta bittijonot, joiden pituus on 16 bittiä (2 tavua)
 		// 16 bittiä varattu merkeille, koska esim. merkkiä € ei voi ilmaista 8 bitin avulla.
-		StringBuilder charsInBits = new StringBuilder();
-		for (int i = 0; i < characters.toString().length(); i++) {
-			String charInBits = fillBeginningWithZeroes(Integer.toBinaryString(characters.toString().charAt(i)));
-			charsInBits.append(charInBits);
-		}
+		String charsInBits = createBitStringOfCharacters(characters.toString());
 
 		// Luo puun pituutta esittävä bittijono (16 bittiä)
 		int treeLength = tree.toString().length();
 		String treeLengthInBits = fillBeginningWithZeroes(Integer.toBinaryString(treeLength));
 
 		// Luo mekkejä esittävän bittijonon pituuden esittävä bittijono (16 bittiä)
-		int charsLength = charsInBits.toString().length();
+		int charsLength = charsInBits.length();
 		String charsLengthInBits = fillBeginningWithZeroes(Integer.toBinaryString(charsLength));
 
-		// Luo kokonainen bittijono String.
-		// Bittijonon ensimmäiset 2 tavua ilmaisevat puu bittijonon pituuden biteissä.
-		// Bittijonon seuraavat 2 tavua ilmaisevat merkeistä muodostetun bittijonon pituuden biteissä.
-		// Seuraavat bitit ilmaisevat puun.
-		// Seuraavat bitit ilmaisevat merkit.
-		// Loput bitit ilmaisevat Huffman koodeilla luodun bittijonon.
+		// Luo kokonainen bittijono String
 		StringBuilder finalBitString = new StringBuilder();
 		finalBitString.append(treeLengthInBits);
 		finalBitString.append(charsLengthInBits);
 		finalBitString.append(tree.toString());
-		finalBitString.append(charsInBits.toString());
+		finalBitString.append(charsInBits);
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0 ; i < text.length(); i++) {
 			sb.append(huffmanCode.get(text.charAt(i)));
