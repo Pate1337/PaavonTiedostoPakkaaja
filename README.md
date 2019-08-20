@@ -18,6 +18,8 @@
 
 [Viikko 4](https://github.com/Pate1337/PaavonTiedostoPakkaaja/blob/master/viikkoraportit/viikko4.md)
 
+[Viikko 5](https://github.com/Pate1337/PaavonTiedostoPakkaaja/blob/master/viikkoraportit/viikko5.md)
+
 ## Hyödyllisiä linkkejä
 
 [Wikipedia - Tiedonpakkaus](https://fi.wikipedia.org/wiki/Tiedonpakkaus)
