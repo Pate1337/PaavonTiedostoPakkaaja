@@ -1,11 +1,11 @@
 package algorithm;
 
 public class Node {
-  char character;
-  int frequency;
+  public char character;
+  public int frequency;
   Node left = null, right = null;
 
-  Node(char c, int f) {
+  public Node(char c, int f) {
     this.character = c;
     this.frequency = f;
   }
