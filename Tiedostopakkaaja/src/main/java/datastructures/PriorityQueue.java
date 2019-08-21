@@ -42,7 +42,7 @@ public class PriorityQueue<T> {
     int i = this.heapSize - 1;
     while (i > 0 && c.compare(this.a[this.a[(i - 2) / 2]], k) > 0) {
       this.a[i] = this.a[this.a[(i - 2) / 2]];
-      i = this.a[(i - 2) / 2];
+      i = Integer.parseInt(this.a[(i - 2) / 2].toString()).intValue();
     }
     this.a[i] = k;
   }*/

@@ -3,14 +3,14 @@
 ```
 PriorityQueue<Node> p = new PriorityQueue<>((l, r) -> l.frequency - r.frequency);
 ```
-* Kontruktorin sain vastaanottamaan Comparator-rajapinnan, mutta insert()-metodin toteutuksessa törmäsin suuriin ongelmiin.
+* Kontruktorin sain vastaanottamaan Comparator-rajapinnan, mutta insert()-metodin toteutuksessa törmäsin suuriin ongelmiin. Koko koodi on katastrofi, mutta esimerkki kuvastaa mitä haluaisin saada aikaan.
 ```
 1.  public void insert(T k) {
 2.    this.heapSize++;
 3.    int i = this.heapSize - 1;
-4.    while (i > 0 && c.compare(this.a[this.a[(i - 2) / 2]], k) > 0) {
-5.      this.a[i] = this.a[this.a[(i - 2) / 2]];
-6.      i = this.a[(i - 2) / 2];
+4.    while (i > 0 && c.compare(this.a[this.a[(i - 1) / 2]], k) > 0) {
+5.      this.a[i] = this.a[this.a[(i - 1) / 2]];
+6.      i = this.a[(i - 1) / 2];
 7.    }
 8.    this.a[i] = k;
 9.  }
@@ -29,3 +29,12 @@ PriorityQueue<Node> p = new PriorityQueue<>((l, r) -> l.frequency - r.frequency)
 
 
 * Todennäköisesti luon prioriteettijonon pelkästään Node-olioille, jotta saan toteutuksen joskus valmiiksi.
+
+* Aloitettu toteuttamaan prioriteettijonoa pelkästään Node-olioille.
+
+* Aloitin sovelluksen testaamisen samalla kun luon uutta koodia.
+
+* Testien vuoksi jouduin ongelmiin Node-olion equals()-metodin kanssa, koska se joutuu rekursiivisesti tarkistamaan, että myös vasen ja oikea lapsi ovat yhtä suuret.
+  * Tämä saatiin toteutettua.
+
+Tunnit: 3 + 2 = 5
