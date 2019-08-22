@@ -2,9 +2,11 @@ package algorithm;
 
 import algorithm.Node;
 import algorithm.BitStringTree;
+import datastructures.NodePriorityQueue;
+
 import java.util.Map;
 import java.util.HashMap;
-import java.util.PriorityQueue;
+// import java.util.PriorityQueue;
 
 /** A helper class to be used when building a tree from the bitsequence String.
 * Used in buildTreeFromBits.
@@ -72,11 +74,12 @@ public class Huffman {
 
 	// Rakentaa Huffman puun ja palauttaa juurisolmun.
 	public static Node buildHuffmanTree(Map<Character, Integer> freq) {
-		PriorityQueue<Node> pq = new PriorityQueue<>((l, r) -> l.frequency - r.frequency);
+		// PriorityQueue<Node> pq = new PriorityQueue<>((l, r) -> l.frequency - r.frequency);
+		NodePriorityQueue pq = new NodePriorityQueue();
 		// Create a leaf node for each character and add it
 		// to the priority queue.
 		for (Map.Entry<Character, Integer> entry : freq.entrySet()) {
-			pq.add(new Node(entry.getKey(), entry.getValue()));
+			pq.insert(new Node(entry.getKey(), entry.getValue()));
 		}
 
 		// do till there is more than one node in the queue
@@ -90,7 +93,7 @@ public class Huffman {
 			// and with frequency equal to the sum of the two nodes
 			// frequencies. Add the new node to the priority queue.
 			int sum = left.frequency + right.frequency;
-			pq.add(new Node('\0', sum, left, right));
+			pq.insert(new Node('\0', sum, left, right));
 		}
 		return pq.peek();
   }
