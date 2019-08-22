@@ -39,4 +39,9 @@ PriorityQueue<Node> p = new PriorityQueue<>((l, r) -> l.frequency - r.frequency)
 
 * Määrittelydokumenttia korjailtu.
 
-Tunnit: 3 + 2 + 2 = 7
+* Prioriteettijono toteutus saatu tehtyä.
+  * Täytyy tehdä jotain suorituskyky vertailua Javan PriorityQueueen.
+  * Tein prioriteettijonon siten, että taulukon koko tuplaantuu aina, kun tarve.
+    * Saattaa hidastaa toimintaa..
+
+Tunnit: 3 + 2 + 2 + 3 = 10
