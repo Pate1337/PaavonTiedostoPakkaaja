@@ -43,7 +43,7 @@ Seuraavaksi jokainen hajautustaulun avain-arvoparista luodaan puun lehtisolmut, 
 
 Olkoon esimerkiksi alkuperäinen teksti merkkijono, joka koostuu merkeistä A, B, C, D ja E. Merkkien esiintymistiheydet ovat järjestyksessä 15, 7, 6, 6 ja 5. Seuraava kuva havainnollistaa tilannetta, jossa lehtisolmut ovat esiintymistiheyksien mukaisessa järjestyksessä prioriteettijonossa:
 
-<img src="https://raw.githubusercontent.com/Pate1337/otm-harjoitustyo/master/harjoitustyo/documentation/kuvat/PelinAloitus.png" width="750">
+<img src="https://raw.githubusercontent.com/Pate1337/PaavonTiedostoPakkaaja/master/documentation/kuvat/kuva1.jpg" width="750">
 
 Seuraavaksi luodaan Huffman puu. Puun luominen tapahtuu suorittamalla askelia a. - c., niin kauan, kun prioriteettijonossa on enemmän kuin yksi solmu. 
   a. Poistetaan kaksi pienimmän esiintymistiheyden omaavaa solmua jonosta.
@@ -54,11 +54,17 @@ Viimeisenä prioriteettijonossa oleva solmu, on puun juurisolmu.
 
 Seuraava kuvat havainnollistavat Huffman puun luontia.
 
-(KUVA2)
+<img src="https://raw.githubusercontent.com/Pate1337/PaavonTiedostoPakkaaja/master/documentation/kuvat/kuva2.jpg" width="750">
+
+<img src="https://raw.githubusercontent.com/Pate1337/PaavonTiedostoPakkaaja/master/documentation/kuvat/kuva3.jpg" width="750">
+
+<img src="https://raw.githubusercontent.com/Pate1337/PaavonTiedostoPakkaaja/master/documentation/kuvat/kuva4.jpg" width="750">
+
+<img src="https://raw.githubusercontent.com/Pate1337/PaavonTiedostoPakkaaja/master/documentation/kuvat/kuva5.jpg" width="750">
 
 Huffman puun avulla jokaiselle lehtisolmussa olevalle merkille, saadaan uniikki bittijonoesitys kuvan (?) esittämällä tavalla.
 
-(KUVA3)
+<img src="https://raw.githubusercontent.com/Pate1337/PaavonTiedostoPakkaaja/master/documentation/kuvat/kuva6.jpg" width="750">
 
 Huffman koodit merkeille ovat siis
 A: 1,
