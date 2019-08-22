@@ -87,10 +87,16 @@ Esimerkin tapauksessa Huffman koodauksella voidaan säästää siis jopa 72 % ti
 
 ### Tavoitteelliset aika- ja tilavaativuudet
 
-* Prioriteettijonoon asettaminen tapahtuu aikavaativuudella O(log(n)), jossa n on alkioiden lukumäärä.
-* Binäärihakupuun läpikäyminen tapahtuu aikavaativuudella O(n).
-* Näin ollen koko algoritmin aikavaativuus tulisi olla O(nlog(n)).
-* Binäärihakupuun läpikäymisen tilavaativuus on O(n).
+Prioriteettijono on minimikeko, joka on voidaan ajatella binääripuuna. Pienimmän alkion poistaminen ja uuden alkion lisääminen minimikekoon onnistuvat ajassa O(log e), jossa e on minimikeon alioiden lukumäärä. Aikavaativuus O(log e) johtuu siitä, että edellä mainituissa operaatioissa rekursiivisia kutsuja joudutaan pahimmassa tapauksessa tekemään puun korkeuden verran, joka on O(log e).
+
+Olkoon n tiedostossa esiintyvien erilaisten merkkien lukumäärä. Algoritmissa prioriteettijonoon lisättiin aluksi n verran lehtiä. Nämä lehdet sijoitetaan algoritmissa Huffman puun lehdiksi ja koska Huffman puu on binääripuu, niin se sisältää 2n-1 solmua. Kaikkia solmuja pidetään Huffman puuta luodessa prioriteettijonossa, joten prioriteettijonoon lisätään alkioita yhteensä 2n-1 kertaa. Näin ollen algoritmin kokonaisaikavaativuudeksi saadaan O(nlog e), jossa n on erilaisten merkkien lukumäärä ja e on prioriteettijonon alkioiden lukumäärä, eli tässä tapauksessa 2n-1. 
+
+Algoritmin kokonaisaikavaativuus on siis O(nlog n).
+
+Prioriteettijonon lisäys- ja poisto-operaatioiden tilavaativuus on myös O(log n), jossa n on alkioiden lukumäärä. Tämä johtuu rekursiosta.
+
+Koska Huffman puuta ei luoda rekursiivisesti, on algoritmin tilavaativuus myös O(log n), missä n on erilaisten merkkien lukumäärä.
+
 
 ### Lähteet
 

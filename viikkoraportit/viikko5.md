@@ -37,4 +37,6 @@ PriorityQueue<Node> p = new PriorityQueue<>((l, r) -> l.frequency - r.frequency)
 * Testien vuoksi jouduin ongelmiin Node-olion equals()-metodin kanssa, koska se joutuu rekursiivisesti tarkistamaan, että myös vasen ja oikea lapsi ovat yhtä suuret.
   * Tämä saatiin toteutettua.
 
-Tunnit: 3 + 2 = 5
+* Määrittelydokumenttia korjailtu.
+
+Tunnit: 3 + 2 + 2 = 7
