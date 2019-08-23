@@ -44,4 +44,10 @@ PriorityQueue<Node> p = new PriorityQueue<>((l, r) -> l.frequency - r.frequency)
   * Tein prioriteettijonon siten, että taulukon koko tuplaantuu aina, kun tarve.
     * Saattaa hidastaa toimintaa..
 
-Tunnit: 3 + 2 + 2 + 3 = 10
+* Ohjelman toimintaa paranneltu. Viime viikolla ohjelma hukkasi joitakin bittejä tiedostosta, johtuen rivinvaihto merkeistä tiedostoa lukiessa ja tiedostoon kierjoitettaiessa.
+* Nyt tiedosto pysyy identtisenä alkuperäisen tiedoston kanssa.
+
+* Kirjoitin vihdoinkin testin, joka suorittaa koko sovelluksen ja tarkastaa, että tiedostot pysyvät samoina kun ne puretaan/pakataan.
+    * Testin koodi on järkyttävää, mutta siitä huolimatta hyödyllisin testi tässä vaiheessa.
+
+Tunnit: 3 + 2 + 2 + 3  + 2 = 12

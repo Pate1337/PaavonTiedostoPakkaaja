@@ -1,38 +1,78 @@
 package tiedostopakkaaja;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import tiedostopakkaaja.App;
+import utilities.FileHandler;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
+import org.junit.*;
+import static org.junit.Assert.*;
+import java.io.InputStream;
+import java.io.ByteArrayInputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+public class AppTest {
+
+    static String[] testfiles;
+
+    @BeforeClass
+    public static void setUp() {
+        testfiles = new String[4];
+        testfiles[0] = "alice29";
+        testfiles[1] = "asyoulik";
+        testfiles[2] = "lcet10";
+        testfiles[3] = "plrabn12";
     }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
+    public void setApp() {
+        Path currentRelativePath = Paths.get("");
+        String s = currentRelativePath.toAbsolutePath().toString();
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+        String input = "";
+
+        for (int i = 0; i < testfiles.length; i++) {
+            Path testFilePath = Paths.get(s, "testfiles", testfiles[i] + ".txt");
+            String originalFilePath = testFilePath.toString();
+
+            Path decodedFilePath = Paths.get(s, "testfiles", testfiles[i] + ".bin");
+
+            input += "1\n" + originalFilePath + "\n" + "2\n" + decodedFilePath.toString() + "\n" + "decodedText.txt\n";
+        }
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+    }
+    
+    @Test
+    public void fileRemainsTheSame() {
+
+        setApp();
+
+        for (int i = 0; i < testfiles.length; i++) {
+            Path currentRelativePath = Paths.get("");
+            String s = currentRelativePath.toAbsolutePath().toString();
+            Path testFilePath = Paths.get(s, "testfiles", testfiles[i] + ".txt");
+            String originalFilePath = testFilePath.toString();
+
+            Path decodedFilePath = Paths.get(s, "testfiles", testfiles[i] + ".bin");
+
+            String[] args = null;
+
+            // Ensin valitsee pakkaamisen ja pakkaa tiedoston
+            App.main(args);
+
+            // Tämä valitsee purkamisen ja purkaa tiedoston
+            App.main(args);
+
+            String originalFileText = FileHandler.readTextFromFile(originalFilePath);
+
+            String resultingFilePath = Paths.get(s, "testfiles", "decodedText.txt").toString();
+
+            String resultingFileText = FileHandler.readTextFromFile(resultingFilePath);
+
+            assertEquals(originalFileText, resultingFileText);
+
+            FileHandler.deleteFile(decodedFilePath.toString());
+
+            FileHandler.deleteFile(resultingFilePath);
+        }
     }
 }

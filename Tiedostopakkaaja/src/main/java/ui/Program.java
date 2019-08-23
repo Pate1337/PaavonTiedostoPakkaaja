@@ -50,15 +50,17 @@ public class Program {
     String exampleFileName = "binary.bin";
     String fileType = ".bin";
     String input = "";
+    String biggest = "";
 
     if (compress) {
       fileType = ".txt";
       compressOrUncompress = "pakata";
       exampleFileName = "text.txt";
+      biggest = " (suurin sallittu koko 500 kt)";
     }
 
     while (true) {
-      System.out.println("\nSyötä tiedoston polku, jonka haluat " + compressOrUncompress + ": ");
+      System.out.println("\nSyötä tiedoston polku, jonka haluat " + compressOrUncompress + "" + biggest + ": ");
       System.out.println("Esimerkiksi: " + Paths.get(System.getProperty("user.home"), "TiedostoPakkaaja", exampleFileName).toString());
       input = scanner.nextLine();
 

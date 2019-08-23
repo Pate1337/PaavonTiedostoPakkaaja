@@ -42,46 +42,6 @@ public class FileHandler {
     return bytesFromFile;
   }
 
-  public static String readTextFromFile(String fileName) {
-    String text = "";
-    String line = null;
-    String eol = System.getProperty("line.separator");
-    try {
-      // FileReader reads text files in the default encoding.
-      FileReader fileReader = new FileReader(fileName);
-
-      BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-      while ((line = bufferedReader.readLine()) != null) {
-        // new lines are not actually saved in text. So add them behind the line.
-        text += line;
-        text += eol;
-      }
-
-      // Sulje lukija
-      bufferedReader.close();         
-    } catch(Exception ex) {
-      System.out.println(ex);                
-    }
-    return text;
-  }
-
-  public static void writeTextToFile(String text, String fileName) {
-    try {
-      String eol = System.getProperty("line.separator");
-      String[] lines = text.split(eol);
-      FileWriter fw = new FileWriter(fileName);
-      BufferedWriter bw = new BufferedWriter(fw);
-      for (int i = 0; i < lines.length; i++) {
-        bw.write(lines[i]);
-        bw.newLine();
-      }   
-      bw.close();    
-    } catch (Exception e) {
-      System.out.println(e);
-    }
-  }
-
   public static boolean fileExists(String fileName) {
     File f = new File(fileName);
     if (f.exists()) {
@@ -103,5 +63,40 @@ public class FileHandler {
       return f.length();
     }
     return 0;
+  }
+
+  public static String readTextFromFile(String fileName) {
+    String text = "";
+    try {
+      FileReader textFileReader = new FileReader(fileName);
+      BufferedReader bufReader = new BufferedReader(textFileReader);
+      // 500 kilotavua
+      char[] buffer = new char[506000];
+      int numberOfCharsRead = bufReader.read(buffer);
+      while (numberOfCharsRead != -1) {
+        text += String.valueOf(buffer, 0, numberOfCharsRead);
+        numberOfCharsRead = textFileReader.read(buffer);
+      }
+      bufReader.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return text;
+  }
+
+  public static void writeTextToFile(String text, String fileName) {
+    try {
+      FileWriter fw = new FileWriter(fileName);
+      BufferedWriter bw = new BufferedWriter(fw);
+      bw.write(text);
+      bw.close();    
+    } catch (Exception e) {
+      System.out.println(e);
+    }
+  }
+
+  public static void deleteFile(String fileName) {
+    File f = new File(fileName);
+    f.delete();
   }
 }
