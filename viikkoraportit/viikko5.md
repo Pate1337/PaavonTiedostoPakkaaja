@@ -50,4 +50,8 @@ PriorityQueue<Node> p = new PriorityQueue<>((l, r) -> l.frequency - r.frequency)
 * Kirjoitin vihdoinkin testin, joka suorittaa koko sovelluksen ja tarkastaa, että tiedostot pysyvät samoina kun ne puretaan/pakataan.
     * Testin koodi on järkyttävää, mutta siitä huolimatta hyödyllisin testi tässä vaiheessa.
 
+* Uuden testin myötä huomasin uutena tiedostona repositoriossani tiedoston .DS_Store
+  * Pelästyin, että se on joku muistiylivuodon aiheuttama katastrofi
+  * Se onkin jonkin sortin datasäilö hakemiston attribuuteille Maceissa.
+
 Tunnit: 3 + 2 + 2 + 3  + 2 = 12
