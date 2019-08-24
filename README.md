@@ -43,12 +43,26 @@ java -jar target/Tiedostopakkaaja-1.0-SNAPSHOT.jar
 
 ### JavaDocin luominen
 
-JavaDoc generoidaan hakemistossa /TiedostoPakkaaja komennolla
+JavaDoc generoidaan hakemistossa /Tiedostopakkaaja komennolla
 ```
 mvn javadoc:javadoc
 ```
 
 Javadocia voi tarkastella selaimella osoitteessa /target/site/apidocs.
+
+### Testaus
+
+Testien ajaminen onnistuu hakemistossa /Tiedostopakkaaja komennolla
+```
+mvn test
+```
+
+Testikattavuusraportin voi luoda komennolla
+```
+mvn test jacoco:report
+```
+
+Testikattavuusraporttia pääsee tarkastelemaan selaimella osoitteessa /target/site/jacoco/index.html
 
 
 
