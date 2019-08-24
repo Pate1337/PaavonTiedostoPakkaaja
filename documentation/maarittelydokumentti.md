@@ -45,7 +45,7 @@ Olkoon esimerkiksi alkuperäinen teksti merkkijono, joka koostuu merkeistä A, B
 
 <img src="https://raw.githubusercontent.com/Pate1337/PaavonTiedostoPakkaaja/master/documentation/kuvat/kuva1.jpg" width="750">
 
-Seuraavaksi luodaan Huffman puu. Puun luominen tapahtuu suorittamalla askelia a. - c., niin kauan, kun prioriteettijonossa on enemmän kuin yksi solmu. 
+Seuraavaksi luodaan Huffman puu. Puun luominen tapahtuu suorittamalla askelia 1. - 3., niin kauan, kun prioriteettijonossa on enemmän kuin yksi solmu. 
   1. Poistetaan kaksi pienimmän esiintymistiheyden omaavaa solmua jonosta.
   2. Luodaan uusi sisäsolmu, jonka oikeaksi lapseksi asetetaan ensimmäisenä jonosta poistettu solmu ja vasemmaksi lapseksi jälkimmäisenä poistettu solmu. Sisäsolmun esiintymistiheydeksi tulee lapsisolmujen esintyymistiheyksien summa.
   3. Lisätään uusi solmu prioriteettijonoon.
