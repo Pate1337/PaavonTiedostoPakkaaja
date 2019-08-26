@@ -160,4 +160,20 @@ public class HuffmanTest {
 
     assertEquals(bitStrings[3], result4);
   }
+
+  @Test
+  public void decodesTheGivenStringCorrectly() {
+
+    String result1 = Huffman.decodeBitStringToText(bitStrings[0]);
+
+    assertEquals(characterStrings[0], result1);
+
+    String result2 = Huffman.decodeBitStringToText(bitStrings[1]);
+
+    assertEquals(characterStrings[1], result2);
+
+    String result4 = Huffman.decodeBitStringToText(bitStrings[3]);
+
+    assertEquals(characterStrings[3], result4);
+  }
 }

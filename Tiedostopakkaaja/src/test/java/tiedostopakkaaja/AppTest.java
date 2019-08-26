@@ -55,7 +55,7 @@ public class AppTest {
             Path decodedFilePath = Paths.get(s, "testfiles", testfiles[i] + ".bin");
 
             String[] args = null;
-
+            
             // Ensin valitsee pakkaamisen ja pakkaa tiedoston
             App.main(args);
 
