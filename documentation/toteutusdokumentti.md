@@ -6,6 +6,32 @@
 * Työn mahdolliset puutteet ja parannusehdotukset
 * Lähteet
 
+### Suorituskyky
+
+Tätä täytyy vielä hioa. Koko toteutusdokumentti on ihan jäätävän näköinen tällä hetkellä.
+Prioriteettijonoa koskeva osio on ihan hyvällä alulla.
+
+#### Prioriteettijono
+
+Tällä hetkellä luokassa NodePriorityQueueTest luodaan suorituskyky raportti (joka on vain tuloste), kun testit ajetaan komennolla mvn test. Raportissa verrataan toteuttamaani prioriteettijonoa Javan prioriteettijonoon insert-operaation osalta. Aluksi prioriteettijonoihin lisätään 10000 solmu-oliota, jonka jälkeen lisäykset toteutetaan vielä 100000, 1000000, 2000000 ja 4000000 solmulle. Jokainen aika, joka raportissa näkyy, on keskiarvo 50:stä eri mittauksesta. Jokainen lisäys on toteutettu siten, että ne ovat "worst case", eli uudella lisättävällä solmulla on suurempi prioriteetti, kuin aiemmin lisätyillä solmuilla. Alla olevassa taulukossa on erään raportin sisältö.
+
+Solmut | NodePriorityQueue (ms) | Javan PriorityQueue (ms)
+---
+10000 | 1 | 1
+100000 | 5 | 4
+1000000 | 70 | 60
+2000000 | 139 | 138
+4000000 | 309 | 297
+
+Taulukosta voidaan huomata, että myös minun toteutukseni prioriteettijonosta näyttäisi toteuttavan aikavaativuuden O(nlogn), jossa n on solmujen määrä. Tarkempi analyysi on luvassa ensi viikolla :D
+
+#### Huffman
+
+Huffman algoritmin suoritusaikoja aloitettu luokassa HuffmanTest.
+
+
+JÄTIN ALLA OLEVAN TKESTIN TÄNNE TOISTAISEKSI, KORJATAAN POIS ENSI VIIKOLLA !!
+
 * Ohjelmaa voi käyttää .txt-muotoisten tiedostojen pakkaamiseen ja .bin-muotoisten tiedostojen purkamiseen.
   * Käyttöliittymä estää muiden tyyppien pakkaamisen/purkamisen, muuten todennäköisesti toimis :D
 

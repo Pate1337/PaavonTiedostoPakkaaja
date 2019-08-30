@@ -16,11 +16,20 @@ public class AppTest {
 
     @BeforeClass
     public static void setUp() {
-        testfiles = new String[4];
+        testfiles = new String[5];
         testfiles[0] = "alice29";
         testfiles[1] = "asyoulik";
         testfiles[2] = "lcet10";
         testfiles[3] = "plrabn12";
+        testfiles[4] = "testfile3";
+
+        // Jos vastaavat .bin-päätteiset tiedostot ovat jo hakemistossa, poista ne
+        for (int i = 0; i < testfiles.length; i++) {
+            String filePath = "testfiles/" + testfiles[i] + ".bin";
+            if (FileHandler.fileExists(filePath)) {
+                FileHandler.deleteFile(filePath);
+            }
+        }
     }
 
     public void setApp() {

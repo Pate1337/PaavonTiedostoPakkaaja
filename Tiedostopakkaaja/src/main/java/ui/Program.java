@@ -128,6 +128,7 @@ public class Program {
   }
 
   public static void start() {
+
     boolean compress = askIfCompressOrUncompress();
 
     askInputFilePath(compress);

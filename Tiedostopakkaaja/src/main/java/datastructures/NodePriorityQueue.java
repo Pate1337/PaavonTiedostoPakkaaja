@@ -29,6 +29,10 @@ public class NodePriorityQueue {
     heapify(0);
     return min;
   }
+  /** Inserts a new Node to the queue.
+  * @param k Node to insert to the queue
+  * @see Node
+  */
   public void insert(Node k) {
     this.heapSize++;
     if (this.heapSize > this.a.length) {
@@ -41,7 +45,7 @@ public class NodePriorityQueue {
     }
     this.a[i] = k;
   }
-  public void heapify(int i) {
+  private void heapify(int i) {
     // li on left index ja ri on right index
     int li = 2 * i + 1;
     int ri = 2 * i + 2;
@@ -64,6 +68,8 @@ public class NodePriorityQueue {
       this.a[li] = temp;
     }
   }
+  /** Returns the size of the heap, which is the number of Nodes in the queue
+  */
   public int size() {
     return this.heapSize;
   }
@@ -75,9 +81,9 @@ public class NodePriorityQueue {
   }
   private void doubleArraySize() {
     int newLength = this.a.length * 2;
-    if (newLength > 131072) {
+    if (newLength > 4000000) {
       // Älä tee suurempaa
-      newLength = 131072;
+      newLength = 4000000;
     }
     this.a = Arrays.copyOf(this.a, newLength);
   }
