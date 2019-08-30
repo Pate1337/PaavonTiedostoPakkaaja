@@ -16,7 +16,7 @@
 
 * Tän epäselvyyden takia joudun todennäköisesti jättämään uudelleenhajautuksen toteuttamatta. Eli teen hajautustaulusta vaan riittävän suuren heti alusta alkaen.
 
-* Suorituskykytestaus edennyt. En tiedä edelleenkään miten aikavaativuuksia testaisi, joten toteutin enemminkin raportin, joka luodaan kun testit ajetaan. Raportissa näkyy joitakin aikoja, joita sovelluksen joissain vaiheissa kestää (Tällä hetkellä vain prioriteettijono).
+* Suorituskykytestaus edennyt. En tiedä edelleenkään miten aikavaativuuksia testaisi, joten toteutin enemminkin raportin, joka luodaan kun testit ajetaan. Raportissa näkyy joitakin aikoja, joita sovelluksen joissain vaiheissa kestää (Tällä hetkellä vain prioriteettijono). Erästä raporttia voi tarkkailla Toteutusdokumentissa.
   * Tätä raportin sisältöä olisi tarkoitus analysoida pseudokoodin avulla.
 * Joitakin testejä myös lisäilty.
 
