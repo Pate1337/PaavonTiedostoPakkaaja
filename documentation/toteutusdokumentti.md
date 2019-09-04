@@ -26,8 +26,7 @@ Suorituskyky raportin voi luoda ajamalla testit komennolla
 ```
 mvn test -Defficiency=true
 ```
-
-Alla on erään raportin sisältö.
+Raportti on tuloste komentoriville. Alla on erään raportin sisältö.
 
 #### Prioriteettijono
 
@@ -61,7 +60,16 @@ Solmut | NodePriorityQueue (ms) | Javan PriorityQueue (ms)
 
 #### Huffman
 
-Huffman algoritmin suoritusaikoja aloitettu luokassa HuffmanTest.
+Raportissa on listattu myös Huffman luokan encodeTextToBitString-metodin suoritusaikoija erilaisille syötteille. Tässä on eräs raportti:
+
+--- | Merkkien määrä
+--- | --- | --- | ---
+Syötteen pituus | 2 | 20 | 100
+--- | --- | --- | ---
+100000 | 7 | 5 | 9
+1000000 | 37 | 50 | 74
+2000000 | 72 | 98 | 156
+4000000 | 144 | 193 | 298
 
 ### Lähteet
 
