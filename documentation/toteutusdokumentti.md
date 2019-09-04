@@ -62,7 +62,8 @@ Solmut | NodePriorityQueue (ms) | Javan PriorityQueue (ms)
 
 Raportissa on listattu myös Huffman luokan encodeTextToBitString-metodin suoritusaikoija erilaisille syötteille. Tässä on eräs raportti:
 
---- | Merkkien määrä
+Erilaisten merkkien määrät ovat 2, 20 ja 100.
+
 Syötteen pituus | 2 | 20 | 100
 --- | --- | --- | ---
 100000 | 7 | 5 | 9
