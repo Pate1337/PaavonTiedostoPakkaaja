@@ -22,12 +22,6 @@
 
 [Viikko 6](https://github.com/Pate1337/PaavonTiedostoPakkaaja/blob/master/viikkoraportit/viikko6.md)
 
-## Hyödyllisiä linkkejä
-
-[Wikipedia - Tiedonpakkaus](https://fi.wikipedia.org/wiki/Tiedonpakkaus)
-
-[Techie Delight - Huffman coding compression algorithm](https://www.techiedelight.com/huffman-coding/)
-
 ## Komentorivitoiminnot
 
 ### .jar-tiedoston luonti ja suorittaminen
