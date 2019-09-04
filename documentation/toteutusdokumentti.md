@@ -57,6 +57,8 @@ Solmut | NodePriorityQueue (ms) | Javan PriorityQueue (ms)
 2000000 | 35 | 262
 4000000 | 71 | 544
 
+<img src="https://raw.githubusercontent.com/Pate1337/PaavonTiedostoPakkaaja/master/documentation/kuvat/chart2.png" width="750">
+
 #### Huffman
 
 Huffman algoritmin suoritusaikoja aloitettu luokassa HuffmanTest.
