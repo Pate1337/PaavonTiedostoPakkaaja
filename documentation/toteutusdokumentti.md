@@ -71,6 +71,8 @@ Syötteen pituus | 2 | 20 | 100
 2000000 | 72 | 98 | 156
 4000000 | 144 | 193 | 298
 
+<img src="https://raw.githubusercontent.com/Pate1337/PaavonTiedostoPakkaaja/master/documentation/kuvat/chart3.png" width="750">
+
 ### Lähteet
 
 * [Techie Delight - Huffman coding compression algorithm](https://www.techiedelight.com/huffman-coding/)
