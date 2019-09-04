@@ -30,6 +30,13 @@ Testit voidaan suorittaa hakemistossa /Tiedostopakkaaja komennolla
 ```
 mvn test
 ```
+
+Jos haluat suorittaa lisäksi tehokkuustestejä, jotka saattavat viedä useita minuutteja, se onnistuu komennolla:
+
+```
+mvn test -Defficiency=true
+```
+
 Testien rivikattavuusraportin voi luoda komennolla
 ```
 mvn test jacoco:report

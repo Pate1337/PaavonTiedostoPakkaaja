@@ -8,18 +8,30 @@ public class NodePriorityQueue {
   private Node[] a;
   private int heapSize;
 
+  /** Creates a new NodePriorityQueue
+  * The initial length of the array will be 11
+  */
   public NodePriorityQueue() {
     this.a = new Node[11];
     this.heapSize = 0;
   }
+  /** Creates a copy of the NodePriorityQueue given in the parameter
+  * @param pq NodePriorityQueue that will be copied
+  */
+  public NodePriorityQueue(NodePriorityQueue pq) {
+    this.a = pq.getArray();
+    this.heapSize = pq.size();
+  }
   /** Returns the head of this queue, but does not remove.
   * Returns null if queue is empty.
+  * @return The head of this queue. null if queue is empty.
   */
   public Node peek() {
     return a[0];
   }
   /** Returns and removes the head of this queue.
   * Returns null if this queue is empty.
+  * @return The head of this queue. null if queue is empty.
   */
   public Node poll() {
     if (this.heapSize == 0) return null;
@@ -69,6 +81,7 @@ public class NodePriorityQueue {
     }
   }
   /** Returns the size of the heap, which is the number of Nodes in the queue
+  * @return The number of nodes in the queue.
   */
   public int size() {
     return this.heapSize;

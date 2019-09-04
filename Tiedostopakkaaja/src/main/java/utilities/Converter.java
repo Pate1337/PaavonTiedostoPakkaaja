@@ -14,8 +14,6 @@ public class Converter {
   */
   
   public static byte[] stringToByteArray(String bitString) {
-    // Jos (bitString.length() + 7) / 8 > 2 147 483 647 (suurin int) niin bytes täytyy
-    // muuttaa ArrayList. Taulukon koko voi olla maksimissaan edellä mainittu luku.
     // Jos viimeisen tavun pituus ei ole 8 bittiä, sen loppuun lisätään tarvittavat 0 bitit.
     // Esim. 11 => 11000000.
     // Tavun bittien indeksöinti on päinvastainen kuin normaalisti. Ensimmäinen bitti
@@ -24,7 +22,7 @@ public class Converter {
     byte[] bytes = new byte[(bitString.length() + 7) / 8 + 1];
     for (int i = 0; i < bitString.length(); i++) {
       if (bitString.charAt(i) == '1') {
-        // Manipuloi kohdassa bytes[i / 8] olevaa 00000000 tavua. Operaatiot selitetty alla.
+        // Manipuloi kohdassa bytes[i / 8] olevaa 00000000 tavua.
         bytes[i / 8] |= 1 << (7 - (i % 8));
       }
     }

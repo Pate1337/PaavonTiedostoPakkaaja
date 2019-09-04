@@ -1,12 +1,5 @@
 # Määrittelydokumentti
 
-* Mitä algoritmeja ja tietorakenteita toteutat työssäsi
-* Mitä ongelmaa ratkaiset ja miksi valitsit kyseiset algoritmit/tietorakenteet
-* Mitä syötteitä ohjelma saa ja miten näitä käytetään
-* Tavoitteena olevat aika- ja tilavaativuudet (m.m. O-analyysit)
-* Lähteet
-
-
 ### Käytettävät algoritmit
 
 * Huffmanin koodaus
@@ -39,7 +32,7 @@ Huffmanin koodauksen perusidea on laskea tekstisyötteessä esiintyvien merkkien
 
 Kuten edellä mainittiin, aloitetaan ongelman ratkaisu laskemalla tekstissä esiintyvien merkkien lukumäärät (esiintymistiheydet). Merkit ja niiden esiintymistiheydet tallennetaan hajautustauluun, avaimena merkki ja arvona esiintymistiheys.
 
-Seuraavaksi jokainen hajautustaulun avain-arvoparista luodaan puun lehtisolmut, joilla on kentät character, frequency, left ja right. (left ja right ovat luodun solmun lapsisolmut, lehtisolmujen tapauksessa niiden arvot ovat null). Jokainen solmu lisätään prioriteettijonoon, jossa solmut ovat järjestyksessä niiden esiintymistiheyksien mukaan. Suurimman prioriteetin saa solmu, jonka esiintymistiheys on pienin.
+Seuraavaksi jokaisesta hajautustaulun avain-arvoparista luodaan puun lehtisolmut, joilla on kentät character, frequency, left ja right. (left ja right ovat luodun solmun lapsisolmut, lehtisolmujen tapauksessa niiden arvot ovat null). Jokainen solmu lisätään prioriteettijonoon, jossa solmut ovat järjestyksessä niiden esiintymistiheyksien mukaan. Suurimman prioriteetin saa solmu, jonka esiintymistiheys on pienin.
 
 Olkoon esimerkiksi alkuperäinen teksti merkkijono, joka koostuu merkeistä A, B, C, D ja E. Merkkien esiintymistiheydet ovat järjestyksessä 15, 7, 6, 6 ja 5. Seuraava kuva havainnollistaa tilannetta, jossa lehtisolmut ovat esiintymistiheyksien mukaisessa järjestyksessä prioriteettijonossa:
 
@@ -52,7 +45,7 @@ Seuraavaksi luodaan Huffman puu. Puun luominen tapahtuu suorittamalla askelia 1.
 
 Viimeisenä prioriteettijonossa oleva solmu, on puun juurisolmu.
 
-Seuraava kuvat havainnollistavat Huffman puun luontia.
+Seuraavat kuvat havainnollistavat Huffman puun luontia.
 
 <img src="https://raw.githubusercontent.com/Pate1337/PaavonTiedostoPakkaaja/master/documentation/kuvat/kuva2.jpg" width="750">
 
@@ -87,7 +80,7 @@ Esimerkin tapauksessa Huffman koodauksella voidaan säästää siis jopa 72 % ti
 
 ### Tavoitteelliset aika- ja tilavaativuudet
 
-Prioriteettijono on minimikeko, joka on voidaan ajatella binääripuuna. Pienimmän alkion poistaminen ja uuden alkion lisääminen minimikekoon onnistuvat ajassa O(log e), jossa e on minimikeon alioiden lukumäärä. Aikavaativuus O(log e) johtuu siitä, että edellä mainituissa operaatioissa rekursiivisia kutsuja joudutaan pahimmassa tapauksessa tekemään puun korkeuden verran, joka on O(log e).
+Prioriteettijono on minimikeko, joka voidaan ajatella binääripuuna. Pienimmän alkion poistaminen ja uuden alkion lisääminen minimikekoon onnistuvat ajassa O(log e), jossa e on minimikeon alioiden lukumäärä. Aikavaativuus O(log e) johtuu siitä, että edellä mainituissa operaatioissa rekursiivisia kutsuja joudutaan pahimmassa tapauksessa tekemään puun korkeuden verran, joka on O(log e).
 
 Olkoon n tiedostossa esiintyvien erilaisten merkkien lukumäärä. Algoritmissa prioriteettijonoon lisättiin aluksi n verran lehtiä. Nämä lehdet sijoitetaan algoritmissa Huffman puun lehdiksi ja koska Huffman puu on binääripuu, niin se sisältää 2n-1 solmua. Kaikkia solmuja pidetään Huffman puuta luodessa prioriteettijonossa, joten prioriteettijonoon lisätään alkioita yhteensä 2n-1 kertaa. Näin ollen algoritmin kokonaisaikavaativuudeksi saadaan O(nlog e), jossa n on erilaisten merkkien lukumäärä ja e on prioriteettijonon alkioiden lukumäärä, eli tässä tapauksessa 2n-1. 
 

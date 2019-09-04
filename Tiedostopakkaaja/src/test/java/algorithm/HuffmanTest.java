@@ -18,9 +18,12 @@ public class HuffmanTest {
   static String[] characterStrings;
   static String[] bitStrings;
   static List<HashMap<Character, Integer>> frequencies;
+  static String runEfficiencyTests;
 
   @BeforeClass
-  public static void setUp() {
+  public static void setUp() throws Exception {
+
+    runEfficiencyTests = System.getProperty("efficiency");
 
     // Kaikki arvot mitä täällä asetetaan, on testitapauksia.
     // Ole varovainen kun muutat näitä arvoja.
@@ -85,7 +88,7 @@ public class HuffmanTest {
   }
 
   @Test
-  public void buildsHuffmanTreeCorrectly() {
+  public void buildsHuffmanTreeCorrectly() throws Exception {
 
     Node root1 = Huffman.buildHuffmanTree(frequencies.get(3));
 
@@ -201,6 +204,20 @@ public class HuffmanTest {
     assertEquals("1010101010101010", output);
   }
 
+  @Test
+  public void oneCharacterCasesAreHandledCorrectlyOnDecoding() throws Exception {
+    Huffman huffman = new Huffman();
+    Method method = Huffman.class.getDeclaredMethod("handleOneCharacterCaseOnDecode", String.class);
+    method.setAccessible(true);
+
+    String output1 = (String)method.invoke(huffman, bitStrings[0]);
+
+    assertEquals(characterStrings[0], output1);
+
+    String output2 = (String)method.invoke(huffman, bitStrings[1]);
+
+    assertEquals(characterStrings[1], output2);
+  }
 
   @Test
   public void encodesTheGivenStringCorrectly() {
@@ -242,101 +259,69 @@ public class HuffmanTest {
     assertEquals(characterStrings[3], result4);
   }
 
-  @Test
-  public void runtimeOfTheEncodingAlgorithmOnlyDependsOnTheNumberOfDifferentCharactersInGivenString() {
-  
-    /*StringBuilder generatedString = new StringBuilder();
+  private String generateRandomString(int size, int amountOfCharacters) {
+    StringBuilder generatedString = new StringBuilder();
     Random random = new Random();
-    char[] array = new char[5];
-    array[0] = 'a';
-    array[1] = 'b';
-    array[2] = 'c';
-    array[3] = 'd';
-    array[4] = 'e';
 
-    for (int i = 0; i < 400000; i++) {
-      generatedString.append(array[random.nextInt(5)]);
+    for (int i = 0; i < size; i++) {
+      generatedString.append((char)(random.nextInt(amountOfCharacters) + 'a'));
     }
-    System.out.println("GENERATED STRING");
+    return generatedString.toString();
+  }
 
-    FileHandler.writeTextToFile(generatedString.toString(), "testfiles/testfile3.txt");*/
+  private long timeItTakesToEncodeString(String text) {
+    long start = System.currentTimeMillis();
 
-    // 84 merkkiä, 426754 B
-    String input1 = FileHandler.readTextFromFile("testfiles/lcet10.txt");
+    Huffman.encodeTextToBitString(text);
 
-    long start = 0;
-    long end = 0;
+    long end = System.currentTimeMillis();
+
+    return (end - start);
+  }
+
+  private void averageTimeItTakesToEncodeString(int textLength, int amountOfCharacters) {
+
+    String text = generateRandomString(textLength, amountOfCharacters);
+
     long sum = 0;
-    long average1 = 0;
-    long average2 = 0;
-    long average3 = 0;
-    long average4 = 0;
-    int times = 5;
+    int times = 50;
 
     for (int i = 0; i < times; i++) {
-      start = System.currentTimeMillis();
-
-      Huffman.encodeTextToBitString(input1);
-
-      end = System.currentTimeMillis();
-
-      sum += (end - start);
+      sum += timeItTakesToEncodeString(text);
     }
+    
+    System.out.println("length: " + textLength + ", number of characters: " + amountOfCharacters + ", time: " + (sum / times) + "\n");
+  }
 
-    average1 = sum / times;
+  @Test
+  public void runtimesOfEncoding() {
 
-    // 81 merkkiä, 481861 B
-    input1 = FileHandler.readTextFromFile("testfiles/plrabn12.txt");
-    sum = 0;
+    if (runEfficiencyTests.equals("true")) {
+      System.out.println("\nTIME IT TAKES TO ENCODE TEXT\n");
 
-    for (int i = 0; i < times; i++) {
-      start = System.currentTimeMillis();
+      averageTimeItTakesToEncodeString(100000, 2);
 
-      Huffman.encodeTextToBitString(input1);
+      averageTimeItTakesToEncodeString(1000000, 2);
 
-      end = System.currentTimeMillis();
+      averageTimeItTakesToEncodeString(2000000, 2);
 
-      sum += (end - start);
+      averageTimeItTakesToEncodeString(4000000, 2);
+
+      averageTimeItTakesToEncodeString(100000, 20);
+
+      averageTimeItTakesToEncodeString(1000000, 20);
+
+      averageTimeItTakesToEncodeString(2000000, 20);
+
+      averageTimeItTakesToEncodeString(4000000, 20);
+
+      averageTimeItTakesToEncodeString(100000, 100);
+
+      averageTimeItTakesToEncodeString(1000000, 100);
+
+      averageTimeItTakesToEncodeString(2000000, 100);
+
+      averageTimeItTakesToEncodeString(4000000, 100);
     }
-
-    average2 = sum / times;
-
-    assertTrue(average1 > average2);
-
-    // 5 merkkiä, 400000 B
-    input1 = FileHandler.readTextFromFile("testfiles/testfile3.txt");
-    sum = 0;
-
-    for (int i = 0; i < times; i++) {
-      start = System.currentTimeMillis();
-
-      Huffman.encodeTextToBitString(input1);
-
-      end = System.currentTimeMillis();
-
-      sum += (end - start);
-    }
-
-    average3 = sum / times;
-
-    // 74 merkkiä, 152089 B
-    input1 = FileHandler.readTextFromFile("testfiles/alice29.txt");
-    sum = 0;
-
-    for (int i = 0; i < times; i++) {
-      start = System.currentTimeMillis();
-
-      Huffman.encodeTextToBitString(input1);
-
-      end = System.currentTimeMillis();
-
-      sum += (end - start);
-    }
-
-    average4 = sum / times;
-
-    // double joo = (double)(average3 / (double)(400000 / 152089));
-    // assertEquals(average3, average4, 0.001);
-    // assertTrue(joo < average4);
   }
 }

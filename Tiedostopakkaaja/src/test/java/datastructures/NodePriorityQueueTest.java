@@ -10,6 +10,15 @@ import java.util.Arrays;
 
 public class NodePriorityQueueTest {
   NodePriorityQueue pq;
+  static String runEfficiencyTests;
+
+  @BeforeClass
+  public static void setUpClass() throws Exception {
+    runEfficiencyTests = System.getProperty("efficiency");
+    if (runEfficiencyTests.equals("true")) {
+      System.out.println("\nRUNNING TIME EFFICIENCY TESTS, THIS MAY TAKE SEVERAL MINUTES\n");
+    }
+  }
 
   @Before
   public void createPriorityQueue() {
@@ -20,6 +29,23 @@ public class NodePriorityQueueTest {
   public void constructorCreatesArrayWithSize11AndHeapSize0() {
     assertEquals(11, pq.getArraySize());
     assertEquals(0, pq.size());
+  }
+
+  @Test
+  public void constructorWithNodePriorityQueueAsParameterCreatesACopyOfThatNodePriorityQueue() {
+    pq.insert(new Node('a', 1));
+    pq.insert(new Node('b', 2));
+    pq.insert(new Node('c', 3));
+
+    NodePriorityQueue copy = new NodePriorityQueue(pq);
+
+    assertEquals(3, copy.size());
+
+    assertEquals(new Node('a', 1), copy.poll());
+    assertEquals(new Node('b', 2), copy.poll());
+    assertEquals(new Node('c', 3), copy.poll());
+
+    assertEquals(0, copy.size());
   }
 
   @Test
@@ -266,21 +292,104 @@ public class NodePriorityQueueTest {
   @Test
   public void nodePriorityQueueVsJavaPriorityQueueOnInsert() {
 
-    System.out.println("\nRUNNING TIME-EFFICIENCY TESTS...");
-    System.out.println("This may take up to one minute\n");
+    if (runEfficiencyTests.equals("true")) {
 
-    Node[] nodes = createArrayOfNodes(4000000, true);
+      Node[] nodes = createArrayOfNodes(4000000, true);
 
-    createReportOnInsert(Arrays.copyOfRange(nodes, 0, 10000));
+      createReportOnInsert(Arrays.copyOfRange(nodes, 0, 10000));
 
-    createReportOnInsert(Arrays.copyOfRange(nodes, 0, 100000));
+      createReportOnInsert(Arrays.copyOfRange(nodes, 0, 100000));
 
-    createReportOnInsert(Arrays.copyOfRange(nodes, 0, 1000000));
+      createReportOnInsert(Arrays.copyOfRange(nodes, 0, 1000000));
 
-    createReportOnInsert(Arrays.copyOfRange(nodes, 0, 2000000));
+      createReportOnInsert(Arrays.copyOfRange(nodes, 0, 2000000));
 
-    createReportOnInsert(Arrays.copyOfRange(nodes, 0, 4000000));
+      createReportOnInsert(Arrays.copyOfRange(nodes, 0, 4000000));
+    }
 
+    assertTrue(true);
+  }
+
+  private long timeItTakesToPollNodesFromNodePriorityQueue(NodePriorityQueue npq) {
+
+    NodePriorityQueue tempNpq = new NodePriorityQueue(npq);
+
+    int size = tempNpq.size();
+
+    long start = System.currentTimeMillis();
+    for (int i = 0; i < size; i++) {
+      tempNpq.poll();
+    }
+    long end = System.currentTimeMillis();
+
+    return (end - start);
+  }
+
+  private long timeItTakesToPollNodesFromPriorityQueue(PriorityQueue<Node> pq) {
+
+    // Luo kopio
+    PriorityQueue<Node> tempPq = new PriorityQueue<>(pq);
+  
+    int size = tempPq.size();
+
+    long start = System.currentTimeMillis();
+    for (int i = 0; i < size; i++) {
+      tempPq.poll();
+    }
+    long end = System.currentTimeMillis();
+
+    return (end - start);
+  }
+
+  private void createReportOnPoll(Node[] nodes) {
+
+    System.out.println("TIME IT TAKES TO POLL " + nodes.length + " NODES FROM QUEUE\n");
+
+    PriorityQueue<Node> pq = new PriorityQueue<>((l, r) -> l.frequency - r.frequency);
+    NodePriorityQueue npq = new NodePriorityQueue();
+
+    for (int i = 0; i < nodes.length; i++) {
+      pq.add(nodes[i]);
+      npq.insert(nodes[i]);
+    }
+
+    long sumOnNodePriorityQueue = 0;
+    int timesToRun = 50;
+
+    for (int i = 0; i < timesToRun; i++) {
+      sumOnNodePriorityQueue += timeItTakesToPollNodesFromNodePriorityQueue(npq);
+    }
+    long averageTimeOnNodePriorityQueue = sumOnNodePriorityQueue / timesToRun;
+
+    System.out.println("NodePriorityQueue: " + Long.toString(averageTimeOnNodePriorityQueue) + " ms");
+
+    long sumOnPriorityQueue = 0;
+
+    for (int i = 0; i < timesToRun; i++) {
+      sumOnPriorityQueue += timeItTakesToPollNodesFromPriorityQueue(pq);
+    }
+    long averageTimeOnPriorityQueue = sumOnPriorityQueue / timesToRun;
+
+    System.out.println("PriorityQueue: " + Long.toString(averageTimeOnPriorityQueue) + " ms\n");
+  }
+
+  @Test
+  public void nodePriorityQueueVsJavaPriorityQueueOnPoll() {
+
+    if (runEfficiencyTests.equals("true")) {
+
+      Node[] nodes = createArrayOfNodes(4000000, true);
+
+      createReportOnPoll(Arrays.copyOfRange(nodes, 0, 10000));
+
+      createReportOnPoll(Arrays.copyOfRange(nodes, 0, 100000));
+
+      createReportOnPoll(Arrays.copyOfRange(nodes, 0, 1000000));
+
+      createReportOnPoll(Arrays.copyOfRange(nodes, 0, 2000000));
+
+      createReportOnPoll(Arrays.copyOfRange(nodes, 0, 4000000));
+    }
     assertTrue(true);
   }
 }

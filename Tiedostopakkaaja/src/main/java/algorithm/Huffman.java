@@ -1,38 +1,21 @@
 package algorithm;
 
 import algorithm.Node;
+import algorithm.State;
 import algorithm.BitStringTree;
 import datastructures.NodePriorityQueue;
 
 import java.util.Map;
 import java.util.HashMap;
-// import java.util.PriorityQueue;
-
-/** A helper class to be used when building a tree from the bitsequence String.
-* Used in buildTreeFromBits.
-* @see buildTreeFromBits
-*/
-class State {
-	int bitIndex;
-	int charIndex;
-}
 
 /** Contains all the functionality for encoding and decoding text using Huffman coding
  */
 public class Huffman {
-  /** Creates a HashMap containing the characters and their Huffman codes. Goes through
-	* the tree starting from the left most leaf node.
-	* @param root A Node of the Huffman tree
-	* @param str A String containing the root node's Huffman code
-	* @param huffmanCode A Map that contains all the Huffman codes for
-	* already handled leaf nodes
-	* @see Node
-	*/
-	public static void encode(Node root, String str, Map<Character, String> huffmanCode, BitStringTree tree) {
+
+	private static void encode(Node root, String str, Map<Character, String> huffmanCode, BitStringTree tree) {
 		if (root == null)
 			return;
 
-		// found a leaf node
 		if (root.left == null && root.right == null) {
 			tree.tree.append("0");
 			tree.characters.append(root.character);
@@ -45,14 +28,7 @@ public class Huffman {
 		encode(root.right, str + "1", huffmanCode, tree);
 	}
 
-	/** Creates a StringBuilder containing the decoded text
-	* @param root A Node of the Huffman tree
-	* @param index An integer that keeps track of the current index of the bit in the string
-	* @param string A String containing the bits
-	* @param sb A StringBuilder that adds all the leaf node characters into a string
-	* @return An integer that points the index of the next bit to handle
-	*/
-	public static int decode(Node root, int index, String string, StringBuilder sb) {
+	private static int decode(Node root, int index, String string, StringBuilder sb) {
 		if (root == null)
 			return index;
 
@@ -72,31 +48,32 @@ public class Huffman {
 		return index;
 	}
 
-	// Rakentaa Huffman puun ja palauttaa juurisolmun.
+	/** Builds Huffman tree and returns the root.
+	* @param freq Map of characters and their frequencies.
+	* @return The root node of the Huffman tree.
+	*/
 	public static Node buildHuffmanTree(Map<Character, Integer> freq) {
-		// PriorityQueue<Node> pq = new PriorityQueue<>((l, r) -> l.frequency - r.frequency);
 		NodePriorityQueue pq = new NodePriorityQueue();
-		// Create a leaf node for each character and add it
-		// to the priority queue.
+
+		// Luo lehtisolmut jokaisesta merkistä ja lisää ne prioriteettijonoon
 		for (Map.Entry<Character, Integer> entry : freq.entrySet()) {
 			pq.insert(new Node(entry.getKey(), entry.getValue()));
 		}
 
-		// do till there is more than one node in the queue
 		while (pq.size() != 1) {
-			// Remove the two nodes of highest priority
-			// (lowest frequency) from the queue
 			Node right = pq.poll();
 			Node left = pq.poll();
 
-			// Create a new internal node with these two nodes as children 
-			// and with frequency equal to the sum of the two nodes
-			// frequencies. Add the new node to the priority queue.
 			int sum = left.frequency + right.frequency;
 			pq.insert(new Node('\0', sum, left, right));
 		}
 		return pq.peek();
   }
+
+	/** Creates a HashMap containing the characters and their frequencies.
+	* @param text String from which the HashMap is created.
+	* @return The created HashMap.
+	*/
   public static Map<Character, Integer> createFrequenciesHashMap(String text) {
 		Map<Character, Integer> freq = new HashMap<>();
     for (int i = 0 ; i < text.length(); i++) {
@@ -116,6 +93,13 @@ public class Huffman {
 		return zeroes + string;
 	}
 
+	/** Builds the Huffman tree of the given bitstring.
+	* @param bits The bitstring representation of the Huffman tree.
+	* @param state A State object, that is needed when going through the tree.
+	* @param chars Char array that contains the corresponding characters of the trees leaf nodes.
+	* @return The root node of the Huffman tree.
+	* @see State
+	*/
 	public static Node buildTreeFromBits(String bits, State state, char[] chars) {
 		Node root = null;
 		char nextBit = bits.charAt(state.bitIndex);
@@ -134,6 +118,13 @@ public class Huffman {
 		return root;
 	}
 
+	/** Handles the cases, where the file to encode only consists of 1 character.
+	* Will check the amount of the single character in the given text and create a bitstring
+	* that has as many 0's as there were characters in the text.
+	* @param text The text string to encode.
+	* @param onlyCharacter The only character in the text string.
+	* @return The encoded string that can be saved to a binary file as is.
+	*/
 	public static String handleOneCharacterCaseOnEncode(String text, char onlyCharacter) {
 		String toReturn = "";
 		// Ensimmäiset 16 bittiä 0, ilmaisevat puun pituuden
@@ -160,16 +151,24 @@ public class Huffman {
 		return toReturn;
 	}
 
+	/** Creates the Huffman codes for each leaf node in the Huffman tree.
+	* @param root The root node of the Huffman tree.
+	* @param tree A BitStringTree object. Will be built at the same time.
+	* @return A HashMap containing the characters and their Huffman codes.
+	* @see BitStringTree
+	*/
 	public static Map<Character, String> createHuffmanCodes(Node root, BitStringTree tree) {
-		// Luo Huffman koodit jokaiselle merkille.
-		// Luo samalla bittijono tree, jossa 0 kuvaa lehtisolmua ja 1 sisäsolmua.
-		// Luo samalla characters StringBuilder, johon tallennetaan lehtisolmuja vastaavat merkit.
 		Map<Character, String> huffmanCode = new HashMap<>();
     encode(root, "", huffmanCode, tree);
 
 		return huffmanCode;
 	}
 
+	/** Creates a bitstring representation of the given text.
+	* Each character is transformed to 16 bit binary form.
+	* @param text The text which needs to be represented as binary.
+	* @return A bitstring, where every character takes 16 bits.
+	*/
 	public static String createBitStringOfCharacters (String text) {
 		StringBuilder charsInBits = new StringBuilder();
 		for (int i = 0; i < text.length(); i++) {
@@ -179,6 +178,10 @@ public class Huffman {
 		return charsInBits.toString();
 	}
 
+	/** Encodes the given string using Huffman coding.
+	* @param text The original string.
+	* @return String The encoded form of the original string.
+	*/
   public static String encodeTextToBitString (String text) {
 
 		// Luo HashMap freq, joka sisältää merkit ja niiden esiintymistiheydet.
@@ -227,6 +230,10 @@ public class Huffman {
 		return finalBitString.toString();
   }
 
+	/** Decodes the bitstring to it's original form.
+	* @param bitString The encoded text. Needs to be a result of encodeTextToBitString.
+	* @return String The decoded form of the bitstring given as parameter.
+	*/
   public static String decodeBitStringToText (String bitString) {
 
 		// Ensimmäiset 2 tavua ovat puun pituus.
