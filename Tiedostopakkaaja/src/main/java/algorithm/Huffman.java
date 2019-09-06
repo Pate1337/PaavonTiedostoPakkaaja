@@ -4,15 +4,14 @@ import algorithm.Node;
 import algorithm.State;
 import algorithm.BitStringTree;
 import datastructures.NodePriorityQueue;
-
-import java.util.Map;
-import java.util.HashMap;
+import datastructures.HashMap;
+import datastructures.Entry;
 
 /** Contains all the functionality for encoding and decoding text using Huffman coding
  */
 public class Huffman {
 
-	private static void encode(Node root, String str, Map<Character, String> huffmanCode, BitStringTree tree) {
+	private static void encode(Node root, String str, HashMap<Character, String> huffmanCode, BitStringTree tree) {
 		if (root == null)
 			return;
 
@@ -52,11 +51,11 @@ public class Huffman {
 	* @param freq Map of characters and their frequencies.
 	* @return The root node of the Huffman tree.
 	*/
-	public static Node buildHuffmanTree(Map<Character, Integer> freq) {
+	public static Node buildHuffmanTree(HashMap<Character, Integer> freq) {
 		NodePriorityQueue pq = new NodePriorityQueue();
 
 		// Luo lehtisolmut jokaisesta merkistä ja lisää ne prioriteettijonoon
-		for (Map.Entry<Character, Integer> entry : freq.entrySet()) {
+		for (Entry<Character, Integer> entry : freq.entrySet()) {
 			pq.insert(new Node(entry.getKey(), entry.getValue()));
 		}
 
@@ -74,8 +73,8 @@ public class Huffman {
 	* @param text String from which the HashMap is created.
 	* @return The created HashMap.
 	*/
-  public static Map<Character, Integer> createFrequenciesHashMap(String text) {
-		Map<Character, Integer> freq = new HashMap<>();
+  public static HashMap<Character, Integer> createFrequenciesHashMap(String text) {
+		HashMap<Character, Integer> freq = new HashMap<>();
     for (int i = 0 ; i < text.length(); i++) {
 			if (!freq.containsKey(text.charAt(i))) {
 				freq.put(text.charAt(i), 0);
@@ -157,8 +156,8 @@ public class Huffman {
 	* @return A HashMap containing the characters and their Huffman codes.
 	* @see BitStringTree
 	*/
-	public static Map<Character, String> createHuffmanCodes(Node root, BitStringTree tree) {
-		Map<Character, String> huffmanCode = new HashMap<>();
+	public static HashMap<Character, String> createHuffmanCodes(Node root, BitStringTree tree) {
+		HashMap<Character, String> huffmanCode = new HashMap<>();
     encode(root, "", huffmanCode, tree);
 
 		return huffmanCode;
@@ -185,13 +184,13 @@ public class Huffman {
   public static String encodeTextToBitString (String text) {
 
 		// Luo HashMap freq, joka sisältää merkit ja niiden esiintymistiheydet.
-    Map<Character, Integer> freq = createFrequenciesHashMap(text);
+    HashMap<Character, Integer> freq = createFrequenciesHashMap(text);
 
     // Erikoistapaus, jossa merkkijono koostuu vain yhdestä merkistä, esim. "aaaaaaa"
     if (freq.size() == 1) {
-			Map.Entry<Character, Integer> entry = freq.entrySet().iterator().next();
- 			char onlyCharacter = entry.getKey();
-      return handleOneCharacterCaseOnEncode(text, onlyCharacter);
+			Entry<Character, Integer>[] entries = freq.entrySet();
+			char onlyCharacter = entries[0].getKey();
+			return handleOneCharacterCaseOnEncode(text, onlyCharacter);
     }
 
     // Luo Huffman puu
@@ -199,7 +198,7 @@ public class Huffman {
 
 		// Luo Huffman koodit jokaiselle merkille
 		BitStringTree bitStringTree = new BitStringTree();
-		Map<Character, String> huffmanCode = createHuffmanCodes(root, bitStringTree);
+		HashMap<Character, String> huffmanCode = createHuffmanCodes(root, bitStringTree);
 		StringBuilder characters = bitStringTree.characters;
 		StringBuilder tree = bitStringTree.tree;
 

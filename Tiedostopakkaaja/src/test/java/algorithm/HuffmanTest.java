@@ -4,11 +4,10 @@ import algorithm.Huffman;
 import algorithm.BitStringTree;
 import algorithm.Node;
 import utilities.FileHandler;
+import datastructures.HashMap;
 
 import org.junit.*;
 import static org.junit.Assert.*;
-import java.util.Map;
-import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.lang.reflect.Method;
@@ -151,7 +150,7 @@ public class HuffmanTest {
     expected.put('c', "001");
     expected.put('d', "010");
     expected.put('e', "011");
-    Map<Character, String> huffmanCode = Huffman.createHuffmanCodes(root, tree);
+    HashMap<Character, String> huffmanCode = Huffman.createHuffmanCodes(root, tree);
 
     assertTrue(huffmanCode.equals(expected));
     assertEquals("111001000", tree.tree.toString());
