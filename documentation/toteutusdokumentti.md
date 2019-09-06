@@ -76,6 +76,37 @@ Solmut | NodePriorityQueue (ms) | Javan PriorityQueue (ms)
 
 <img src="https://raw.githubusercontent.com/Pate1337/PaavonTiedostoPakkaaja/master/documentation/kuvat/chart2.png" width="750">
 
+Poll-operaation yhteydessä kutsutaan minimikeon `heapify`-operaatiota. Heapify-operaation pseudokoodi on alla:
+
+```
+heapify(A,i)
+1.  l = left(i)
+2.  r = right(i)
+3.  if r ≤ A.heap-size
+4.    if A[l] > A[r] smallest = r
+5.    else smallest = l
+5.    if A[i] > A[smallest]
+6.      vaihda A[i] ja A[smallest]
+7.      heapify(A,smallest)
+8.  elsif l == A.heap-size and A[i]>A[l]
+9.    vaihda A[i] ja A[l]
+```
+
+Samoin kuin insert-operaatiossa, suoritetaan heapify-operaatio pahimmassa yhtä monta kertaa, kuin puun korkeus. Siis heapify-operaation aikavaativuus on O(logn).
+
+Poll-operaation pseudokoodi on seuraavanlainen:
+
+```
+heap-del-min(A)
+1.  min = A[1]
+2.  A[1] = A[A.heap-size]
+3.  A.heap-size = A.heap-size -1
+4.  heapify(A,1)
+5.  return min
+```
+
+Rivit 1, 2, 3 ja 5 suoriutuvat vakioajassa O(1), mutta rivin 4 heapifyn takia poll-operaation aikavaativuudeksi saadaan sama kuin heapifyn, eli O(logn).
+
 ### Huffman
 
 Raportissa on listattu myös Huffman luokan encodeTextToBitString-metodin suoritusaikoja erilaisille syötteille. Tässä on eräs raportti:
