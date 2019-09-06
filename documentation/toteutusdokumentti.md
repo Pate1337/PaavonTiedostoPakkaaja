@@ -109,18 +109,35 @@ Rivit 1, 2, 3 ja 5 suoriutuvat vakioajassa O(1), mutta rivin 4 heapifyn takia po
 
 ### Huffman
 
+#### encode
+
 Raportissa on listattu myös Huffman luokan encodeTextToBitString-metodin suoritusaikoja erilaisille syötteille. Tässä on eräs raportti:
 
 Erilaisten merkkien määrät ovat 2, 20 ja 100.
 
 Syötteen pituus | 2 | 20 | 100
 --- | --- | --- | ---
-100000 | 7 | 5 | 9
-1000000 | 37 | 50 | 74
-2000000 | 72 | 98 | 156
-4000000 | 144 | 193 | 298
+100000 | 5 | 6 | 8
+1000000 | 54 | 66 | 86
+2000000 | 107 | 142 | 163
+4000000 | 215 | 277 | 346
 
 <img src="https://raw.githubusercontent.com/Pate1337/PaavonTiedostoPakkaaja/master/documentation/kuvat/chart3.png" width="750">
+
+#### decode
+
+Eräs raportti decodeBitStringToText-metodille.
+
+Erilaisten merkkien määrät ovat 2, 20 ja 100.
+
+Syötteen pituus | 2 | 20 | 100
+--- | --- | --- | ---
+100000 | 2 | 4 | 7
+1000000 | 15 | 45 | 70
+2000000 | 32 | 91 | 156
+4000000 | 76 | 190 | 278
+
+<img src="https://raw.githubusercontent.com/Pate1337/PaavonTiedostoPakkaaja/master/documentation/kuvat/chart4.png" width="750">
 
 ## Puutteet ja parannusehdotukset
 
