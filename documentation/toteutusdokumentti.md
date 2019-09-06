@@ -46,7 +46,7 @@ Taulukon perusteella luotu graafi näyttää seuraavalta:
 
 Minimikeon insert-operaatio pseudokoodilla esitettynä on seuraavanlainen.
 
-```java
+```
 heap-insert(A,k)
 1.  A.heap-size = A.heap-size+1
 2.  i = A.heap-size
