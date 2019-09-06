@@ -48,8 +48,8 @@ public class Huffman {
 	}
 
 	/** Builds Huffman tree and returns the root.
-	* @param freq Map of characters and their frequencies.
-	* @return The root node of the Huffman tree.
+	* @param freq HashMap of characters and their frequencies.
+	* @return Node The root node of the Huffman tree.
 	*/
 	public static Node buildHuffmanTree(HashMap<Character, Integer> freq) {
 		NodePriorityQueue pq = new NodePriorityQueue();

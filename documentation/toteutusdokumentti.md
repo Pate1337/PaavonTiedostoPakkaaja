@@ -44,7 +44,19 @@ Taulukon perusteella luotu graafi näyttää seuraavalta:
 
 <img src="https://raw.githubusercontent.com/Pate1337/PaavonTiedostoPakkaaja/master/documentation/kuvat/chart1.png" width="750">
 
-Taulukosta voidaan huomata, että myös minun toteutukseni prioriteettijonosta näyttäisi toteuttavan aikavaativuuden O(nlogn), jossa n on solmujen määrä. Tarkempi analyysi on luvassa ensi viikolla :D
+Minimikeon insert-operaatio pseudokoodilla esitettynä on seuraavanlainen.
+
+heap-insert(A,k)
+1.  A.heap-size = A.heap-size+1
+2.  i = A.heap-size
+3.  while i>1 and A[parent(i)] > k
+4.    A[i] = A[parent(i)]
+5.    i = parent(i)
+6.  A[i]=k
+
+Kuten määrittelydokumentissa mainittiin, voidaan minimikeko ajatella binääripuuna. Insert-operaation pahimmassa tapauksessa lisättävä solmu viedään puun juureen. Koska n-alkioisen binääripuun korkeus on O(logn), niin pahimmassa tapauksessa rivit 3-5 suoritetaan logn kertaa, eli insert-operaation aikavaativuudeksi saadaan O(logn).
+
+Raportissa insert-operaatio tehdään yhtä monta kertaa, kuin prioriteettijonossa on alkioita (eli jokaista alkiota kohden yksi lisäys). Jos n on alkioiden määrä, niin tällöin kaikkien insert-operaatioiden aikavaativuudeksi saadaan O(nlogn).
 
 Raportti vertaa myös Javan prioriteettijonon ja minun toteutukseni poll-operaation nopeutta. Mittaukset on toteutettu samalla tavalla, kuin insert-operaation osalta. Tässä on erään raportin sisältö.
 

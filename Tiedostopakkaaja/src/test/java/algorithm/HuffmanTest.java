@@ -323,4 +323,61 @@ public class HuffmanTest {
       averageTimeItTakesToEncodeString(4000000, 100);
     }
   }
+
+  @Test
+  public void runtimesOfDecoding() {
+    if (runEfficiencyTests.equals("true")) {
+      System.out.println("\nTIME IS TAKES TO DECODE BITSTRING\n");
+
+      averageTimeItTakesToDecodeString(100000, 2);
+
+      averageTimeItTakesToDecodeString(1000000, 2);
+
+      averageTimeItTakesToDecodeString(2000000, 2);
+
+      averageTimeItTakesToDecodeString(4000000, 2);
+
+      averageTimeItTakesToDecodeString(100000, 20);
+
+      averageTimeItTakesToDecodeString(1000000, 20);
+
+      averageTimeItTakesToDecodeString(2000000, 20);
+
+      averageTimeItTakesToDecodeString(4000000, 20);
+
+      averageTimeItTakesToDecodeString(100000, 100);
+
+      averageTimeItTakesToDecodeString(1000000, 100);
+
+      averageTimeItTakesToDecodeString(2000000, 100);
+
+      averageTimeItTakesToDecodeString(4000000, 100);
+    }
+  }
+
+  private void averageTimeItTakesToDecodeString(int textLength, int amountOfCharacters) {
+
+    String text = generateRandomString(textLength, amountOfCharacters);
+
+    long sum = 0;
+    int times = 50;
+
+    String encoded = Huffman.encodeTextToBitString(text);
+
+    for (int i = 0; i < times; i++) {
+      sum += timeItTakesToDecodeString(encoded);
+    }
+    
+    System.out.println("length: " + textLength + ", number of characters: " + amountOfCharacters + ", time: " + (sum / times) + "\n");
+  }
+
+  private long timeItTakesToDecodeString(String text) {
+    long start = System.currentTimeMillis();
+
+    Huffman.decodeBitStringToText(text);
+
+    long end = System.currentTimeMillis();
+
+    return (end - start);
+  }
 }
