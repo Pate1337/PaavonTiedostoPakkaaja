@@ -124,6 +124,27 @@ Syötteen pituus | 2 | 20 | 100
 
 <img src="https://raw.githubusercontent.com/Pate1337/PaavonTiedostoPakkaaja/master/documentation/kuvat/chart3.png" width="750">
 
+encodeTextToBitString-metodi on esitetty lyhykäisyydessään alla:
+
+```
+encodeTextToBitString(text)
+1.  HashMap freq = createFrequenciesHashMap(text)
+2.  Node root = buildHuffmanTree(freq)
+3.  HashMap huffmanCodes = createHuffmanCodes(root)
+4.  Loput operaatiot
+```
+
+Jos syötteessä olevien merkkien yhteenlaskettu määrä on e ja erilaisten merkkien määrä on n.
+Rivillä 1 suoritetaan vakioaikaset O(1) hajautustauluun lisäysoperaatiot e kertaa. freq avaimina toimivat merkit, joten hajautustaulun kooksi tulee n (erilaiset merkit).
+
+Rivillä 2 kutsutaan metodia buildHuffmanTree. Metodissa buildHuffmanTree lisätään ensin lehtisolmut prioriteettijonoon, lehtisolmujen määrä on n, eli sama kuin hajautustaulun freq koko. Tämän jälkeen prioriteettijonoon lisätään vielä loput solmut, joita on 2n-1 kappaletta. Koska prioriteettijonon insert-operaation aikavaativuus on O(logn), niin koko buildHuffmanTree-metodin aikavaativuudeksi saadaan O(nlogn).
+
+Rivillä 3 kutsutaan metodia createHuffmanCodes, joka puolestaan kutsuu metodia encode jokaiselle puun root solmulle. Solmuja on 2n-1 kappaletta, joten metodin createHuffmanCodes aikavaativuus on O(n).
+
+Rivin 4 loput operaatiot, ovat bittijono merkkijonon luomiseen liittyvät operaatiot, joiden aikavaativuus on O(n).
+
+Metodin encodeTextToBitString lopullinen aikavaativuus on siis O(nlogn).
+
 #### decode
 
 Eräs raportti decodeBitStringToText-metodille.
@@ -167,7 +188,7 @@ Käyttöliittymästä saisi myös melko helposti siistin graafisen käyttöliitt
 
 ### Muut
 
-ArrayList, Arrays.copy() ja StringBuilder jäivät toteuttamatta itse. 
+ArrayList, Arrays.copy() ja StringBuilder jäivät toteuttamatta itse. Lisää tehokkuustestejä olisi ollut myös mukava tehdä.
 
 ## Lähteet
 
