@@ -46,6 +46,7 @@ Taulukon perusteella luotu graafi näyttää seuraavalta:
 
 Minimikeon insert-operaatio pseudokoodilla esitettynä on seuraavanlainen.
 
+```java
 heap-insert(A,k)
 1.  A.heap-size = A.heap-size+1
 2.  i = A.heap-size
@@ -53,6 +54,7 @@ heap-insert(A,k)
 4.    A[i] = A[parent(i)]
 5.    i = parent(i)
 6.  A[i]=k
+```
 
 Kuten määrittelydokumentissa mainittiin, voidaan minimikeko ajatella binääripuuna. Insert-operaation pahimmassa tapauksessa lisättävä solmu viedään puun juureen. Koska n-alkioisen binääripuun korkeus on O(logn), niin pahimmassa tapauksessa rivit 3-5 suoritetaan logn kertaa, eli insert-operaation aikavaativuudeksi saadaan O(logn).
 
