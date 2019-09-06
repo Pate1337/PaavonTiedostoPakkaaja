@@ -1,11 +1,5 @@
 # Toteutusdokumentti
 
-* Ohjelman yleisrakenne
-* Saavutetut aika- ja tilavaativuudet (m.m. O-analyysit pseudokoodista)
-* Suorituskyky- ja O-analyysivertailu (mikäli työ vertailupainotteinen)
-* Työn mahdolliset puutteet ja parannusehdotukset
-* Lähteet
-
 ## Ohjelman yleisrakenne
 
 Ohjelman avulla voi pakata tekstitiedostoja (.txt). Pakkaamisen lopputuloksena ohjelma luo binääritiedoston (.bin), jonka koko on noin 40-60 % alkuperäisen tekstitiedoston koosta. Ohjelman avulla voidaan pakkauksen tuloksena saatu binääritiedosto myös purkaa täysin alkuperäiseen muotoon. Ohjelmaa ei voi käyttää muiden binääritiedostojen purkamiseen, kuin tällä ohjelmalla pakattuihin binääritiedostoihin.
@@ -188,7 +182,7 @@ Käyttöliittymästä saisi myös melko helposti siistin graafisen käyttöliitt
 
 ### Muut
 
-ArrayList, Arrays.copy() ja StringBuilder jäivät toteuttamatta itse. Lisää tehokkuustestejä olisi ollut myös mukava tehdä.
+ArrayList, Arrays.copy() ja StringBuilder jäivät toteuttamatta itse. Lisää tehokkuustestejä olisi ollut myös mukava tehdä. Erityisesti pakkaamisella saavutetut tilansäästöt jäivät kokonaan raportoitua. (Toki testeissä nähdään tilansäästö yksittäiselle tiedostolle).
 
 ## Lähteet
 

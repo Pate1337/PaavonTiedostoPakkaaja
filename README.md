@@ -22,6 +22,8 @@
 
 [Viikko 6](https://github.com/Pate1337/PaavonTiedostoPakkaaja/blob/master/viikkoraportit/viikko6.md)
 
+[Viikko 7](https://github.com/Pate1337/PaavonTiedostoPakkaaja/blob/master/viikkoraportit/viikko7.md)
+
 ## Komentorivitoiminnot
 
 ### .jar-tiedoston luonti ja suorittaminen
@@ -52,6 +54,13 @@ Testien ajaminen onnistuu hakemistossa /Tiedostopakkaaja komennolla
 ```
 mvn test
 ```
+
+Testien yhdeydessä voidaan ajaa tehokkuustestejä komennolla
+```
+mvn test -Defficiency=true
+```
+Raportti tulostuu komentoriville.
+
 
 Testikattavuusraportin voi luoda komennolla
 ```
